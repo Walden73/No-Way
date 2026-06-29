@@ -1,28 +1,1090 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>No-Way — Bientôt disponible</title>
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      background: #0f0f0f;
-      color: #ffffff;
-      font-family: sans-serif;
-      text-align: center;
-    }
-    h1 { font-size: 2.5rem; margin-bottom: 0.5rem; }
-    p { color: #aaaaaa; font-size: 1.1rem; }
-  </style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
 </head>
 <body>
-  <h1>No-Way</h1>
-  <p>Site en construction — bientôt disponible.</p>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&amp;family=Hanken+Grotesk:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{margin:0;background:#0E0E0E;color:#F5F5F2;font-family:"Hanken Grotesk",sans-serif;-webkit-font-smoothing:antialiased;}
+  ::selection{background:#BFF230;color:#0B0C0E;}
+  a{color:inherit;text-decoration:none;}
+  @keyframes nwpulse{0%,100%{opacity:1;}50%{opacity:.35;}}
+  @keyframes nwKeyShake{0%,4%{transform:rotate(0)}9%{transform:rotate(-7deg)}15%{transform:rotate(8deg)}21%{transform:rotate(-8deg)}27%{transform:rotate(7deg)}33%{transform:rotate(-5deg)}38%,100%{transform:rotate(0)}}
+  @keyframes nwKeyBreak{0%,38%{transform:translateY(0) rotate(0);opacity:1}44%{transform:translateY(3px) rotate(-4deg)}58%{transform:translateY(42px) rotate(22deg);opacity:.82}86%{transform:translateY(42px) rotate(22deg);opacity:.82}90%{transform:translateY(42px) rotate(22deg);opacity:0}91%,100%{transform:translateY(0) rotate(0);opacity:1}}
+  @keyframes nwGlow{0%,38%{opacity:.22;transform:scale(.88)}50%{opacity:.72;transform:scale(1.16)}58%{opacity:.5;transform:scale(1)}86%{opacity:.5;transform:scale(1)}100%{opacity:.22;transform:scale(.88)}}
+  @keyframes nwStamp{0%,46%{transform:scale(1.7);opacity:0}54%{transform:scale(.92);opacity:1}60%{transform:scale(1);opacity:1}86%{transform:scale(1);opacity:1}92%,100%{transform:scale(1);opacity:0}}
+  @keyframes nwOrbit{from{transform:rotate(0)}to{transform:rotate(360deg)}}
+  @keyframes nwOrbitCounter{from{transform:rotate(0)}to{transform:rotate(-360deg)}}
+  @keyframes nwFlipIn{0%{transform:rotateX(-90deg);opacity:0}55%{opacity:1}100%{transform:rotateX(0);opacity:1}}
+  @keyframes nwBtnPulse{0%,100%{transform:scale(1);box-shadow:0 10px 24px rgba(0,0,0,0.22)}50%{transform:scale(1.05);box-shadow:0 16px 34px rgba(0,0,0,0.32)}}
+</style>
+</helmet>
+<div style="background:linear-gradient(#0E0E0E,#0E0E0E) center top / 1280px 100% no-repeat, #0A1228;min-height:100%;overflow-x:hidden;">
+
+  <!-- ============ NAV ============ -->
+  <nav style="position:sticky;top:0;z-index:50;background:rgba(14,14,14,0.86);backdrop-filter:blur(10px);border-bottom:1px solid rgba(255,255,255,0.07);">
+    <div style="max-width:1280px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;gap:24px;">
+      <a href="#top" style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:21px;letter-spacing:-0.6px;display:flex;align-items:center;gap:9px;">
+        <span style="width:42px;height:42px;border-radius:10px;background:#DF7000;border:2px solid #0B0C0E;display:inline-flex;align-items:center;justify-content:center;color:#76B900;flex:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path fill="currentColor" stroke="#0B0C0E" stroke-width="1" stroke-linejoin="round" d="M10.5 3c4.14 0 7.5 3.36 7.5 7.5V13h4l-6 7l-6-7h4v-2.5C14 8.57 12.43 7 10.5 7S7 8.57 7 10.5V18H3v-7.5C3 6.36 6.36 3 10.5 3"></path></svg>
+        </span>NO-WAY
+      </a>
+      <div style="display:flex;align-items:center;gap:28px;font-size:14px;font-weight:600;color:#9A9A95;">
+        <a href="#auto" style="display:flex;align-items:center;gap:7px;"><span style="width:7px;height:7px;border-radius:50%;background:#76B900;"></span>{{ t.navAuto }}</a>
+        <a href="#parental" style="display:flex;align-items:center;gap:7px;"><span style="width:7px;height:7px;border-radius:50%;background:#DF7000;"></span>{{ t.navParental }}</a>
+        <a href="#features">{{ t.navFeatures }}</a>
+        <a href="#privacy">{{ t.navPrivacy }}</a>
+        <a href="#price">{{ t.navPrice }}</a>
+        <a href="#faq">FAQ</a>
+      </div>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <button onClick="{{ toggleLang }}" style="cursor:pointer;background:#232325;color:#F5F5F2;border:none;border-radius:9px;padding:8px 12px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:13px;letter-spacing:.5px;">{{ otherLang }}</button>
+        <a href="#download" style="background:#76B900;color:#0B0C0E;font-weight:800;font-size:14px;padding:10px 18px;border-radius:14px;">{{ t.navDownload }}</a>
+      </div>
+    </div>
+  </nav>
+
+  <div id="top"></div>
+
+  <!-- ============ PANNEAU DE RÉGLAGE (sliders) ============ -->
+  <div style="position:fixed;right:18px;bottom:18px;z-index:200;background:#161616;border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:18px;width:248px;max-height:78vh;overflow-y:auto;box-shadow:0 18px 44px rgba(0,0,0,0.55);font-family:'Hanken Grotesk',sans-serif;">
+    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
+      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:#9A9A95;">Déplacer</span>
+      <button onClick="{{ resetOff }}" style="cursor:pointer;background:#232325;color:#F5F5F2;border:none;border-radius:8px;padding:5px 10px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:11px;">Reset</button>
+    </div>
+
+    <div style="font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#9A9A95;margin-bottom:8px;">Taille du texte</div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:42px;font-size:10px;font-weight:700;color:#6E6E68;">Kicker</span><input type="range" min="9" max="22" value="{{ kickerSize }}" onChange="{{ setKickerSize }}" style="flex:1;accent-color:#F5F5F2;"></div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:18px;"><span style="width:42px;font-size:10px;font-weight:700;color:#6E6E68;">Titre</span><input type="range" min="18" max="60" value="{{ titleSize }}" onChange="{{ setTitleSize }}" style="flex:1;accent-color:#F5F5F2;"></div>
+
+    <div style="font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#9A9A95;margin-bottom:8px;">Téléphone</div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:42px;font-size:10px;font-weight:700;color:#6E6E68;">Échelle</span><input type="range" min="50" max="160" value="{{ phoneScale }}" onChange="{{ setPhoneScale }}" style="flex:1;accent-color:#F5F5F2;"></div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:42px;font-size:10px;font-weight:700;color:#6E6E68;">Dégradé</span><input type="range" min="0" max="100" step="1" value="{{ gradBlend }}" onChange="{{ setGradBlend }}" style="flex:1;accent-color:#DF7000;"></div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:42px;font-size:10px;font-weight:700;color:#6E6E68;">↔ Horiz.</span><input type="range" min="-200" max="200" step="1" value="{{ phoneX }}" onChange="{{ setPhoneX }}" style="flex:1;accent-color:#F5F5F2;"></div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:18px;"><span style="width:42px;font-size:10px;font-weight:700;color:#6E6E68;">↕ Vert.</span><input type="range" min="-200" max="200" step="1" value="{{ phoneY }}" onChange="{{ setPhoneY }}" style="flex:1;accent-color:#F5F5F2;"></div>
+
+    <div style="font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#84CC16;margin-bottom:8px;">Auto-blocage — carte</div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px;"><span style="width:42px;font-size:10px;font-weight:700;color:#6E6E68;">↔ Pos.</span><input type="range" min="-800" max="800" step="1" value="{{ off.autoX }}" onChange="{{ setAutoX }}" style="flex:1;accent-color:#84CC16;"></div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6E6E68;margin-bottom:6px;">↳ Kicker</div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↔</span><input type="range" min="-200" max="200" value="{{ off.autoKickerX }}" onChange="{{ setAutoKickerX }}" style="flex:1;accent-color:#84CC16;"></div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↕</span><input type="range" min="-120" max="120" value="{{ off.autoKickerY }}" onChange="{{ setAutoKickerY }}" style="flex:1;accent-color:#84CC16;"></div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6E6E68;margin-bottom:6px;">↳ Titre</div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↔</span><input type="range" min="-200" max="200" value="{{ off.autoTitleX }}" onChange="{{ setAutoTitleX }}" style="flex:1;accent-color:#84CC16;"></div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:18px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↕</span><input type="range" min="-350" max="350" value="{{ off.autoTitleY }}" onChange="{{ setAutoTitleY }}" style="flex:1;accent-color:#84CC16;"></div>
+
+    <div style="font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#DF7000;margin-bottom:8px;">Régulation parentale — carte</div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px;"><span style="width:42px;font-size:10px;font-weight:700;color:#6E6E68;">↔ Pos.</span><input type="range" min="-800" max="800" step="1" value="{{ off.parentalX }}" onChange="{{ setParentalX }}" style="flex:1;accent-color:#DF7000;"></div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6E6E68;margin-bottom:6px;">↳ Kicker</div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↔</span><input type="range" min="-200" max="200" value="{{ off.parentalKickerX }}" onChange="{{ setParentalKickerX }}" style="flex:1;accent-color:#DF7000;"></div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↕</span><input type="range" min="-120" max="120" value="{{ off.parentalKickerY }}" onChange="{{ setParentalKickerY }}" style="flex:1;accent-color:#DF7000;"></div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6E6E68;margin-bottom:6px;">↳ Titre</div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↔</span><input type="range" min="-200" max="200" value="{{ off.parentalTitleX }}" onChange="{{ setParentalTitleX }}" style="flex:1;accent-color:#DF7000;"></div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:18px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↕</span><input type="range" min="-350" max="350" value="{{ off.parentalTitleY }}" onChange="{{ setParentalTitleY }}" style="flex:1;accent-color:#DF7000;"></div>
+
+    <div style="font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#76B900;margin-bottom:8px;">Google Play</div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↔</span><input type="range" min="-300" max="300" value="{{ off.gpX }}" onChange="{{ setGpX }}" style="flex:1;accent-color:#76B900;"></div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:18px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↕</span><input type="range" min="-500" max="500" value="{{ off.gpY }}" onChange="{{ setGpY }}" style="flex:1;accent-color:#76B900;"></div>
+
+    <div style="font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#DF7000;margin-bottom:8px;">Récréation</div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6E6E68;margin-bottom:6px;">↳ Image</div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↔</span><input type="range" min="-400" max="400" value="{{ off.recImgX }}" onChange="{{ setRecImgX }}" style="flex:1;accent-color:#DF7000;"></div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↕</span><input type="range" min="-300" max="300" value="{{ off.recImgY }}" onChange="{{ setRecImgY }}" style="flex:1;accent-color:#DF7000;"></div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6E6E68;margin-bottom:6px;">↳ 27 min + barre</div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↔</span><input type="range" min="-400" max="400" value="{{ off.recMeterX }}" onChange="{{ setRecMeterX }}" style="flex:1;accent-color:#DF7000;"></div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↕</span><input type="range" min="-300" max="300" value="{{ off.recMeterY }}" onChange="{{ setRecMeterY }}" style="flex:1;accent-color:#DF7000;"></div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6E6E68;margin-bottom:6px;">↳ Titre RÉCRÉATION</div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↔</span><input type="range" min="-900" max="900" value="{{ off.recTitleX }}" onChange="{{ setRecTitleX }}" style="flex:1;accent-color:#DF7000;"></div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↕</span><input type="range" min="-300" max="300" value="{{ off.recTitleY }}" onChange="{{ setRecTitleY }}" style="flex:1;accent-color:#DF7000;"></div>
+    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6E6E68;margin-bottom:6px;">↳ Bouton</div>
+    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↔</span><input type="range" min="-900" max="900" value="{{ off.recBtnX }}" onChange="{{ setRecBtnX }}" style="flex:1;accent-color:#DF7000;"></div>
+    <div style="display:flex;align-items:center;gap:9px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↕</span><input type="range" min="-300" max="300" value="{{ off.recBtnY }}" onChange="{{ setRecBtnY }}" style="flex:1;accent-color:#DF7000;"></div>
+  </div>
+
+  <!-- ============ HERO ============ -->
+  <header style="max-width:1280px;margin:0 auto;padding:84px 24px 72px;display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;">
+    <div>
+      <div style="display: inline-flex; align-items: center; gap: 9px; font-size: 12px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: #6E6E68; margin-bottom: 24px; margin-left: 40px">
+        <span style="width:7px;height:7px;border-radius:50%;background:#76B900;"></span>SIMPLE, LOCAL ET RADICAL</div>
+      <h1 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: clamp(52px,7vw,104px); line-height: 0.9; letter-spacing: -0.045em; margin: 0 0 26px; margin-left: 40px">DETOX<br>D'ÉCRAN</h1>
+      <p style="max-width: 703px; margin: 0 0 38px; font-size: 18px; line-height: 1.55; color: #9A9A95; white-space: pre-line; width: 666px; margin-left: 40px">Brider provisoirement sa connexion, où l'accès à certaines applications ou sites web. Se permettre des petits écarts au compte-goutte.
+Pour soi-même ou son enfant.
+C'est parfois dans la restriction qu'on regagne notre liberté.</p>
+      <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
+        <a href="#download" style="display: inline-flex; align-items: center; gap: 12px; background: transparent; color: #76B900; border: 1.5px solid #76B900; padding: 15px 26px; border-radius: 14px; transition: transform .2s ease; transform: {{ gpTransform }}; margin-left: 38px">
+          <svg width="22" height="24" viewBox="0 0 22 24" fill="#76B900"><path d="M1 1.5v21l11-10.5L1 1.5z" opacity="0.92"></path></svg>
+          <span style="text-align:left;line-height:1.1;"><span style="display:block;font-size:11px;font-weight:600;opacity:.75;">{{ t.gpKicker }}</span><span style="display:block;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;">Google Play</span></span>
+        </a>
+      </div>
+    </div>
+    <div style="display:flex;justify-content:center;">
+      <!-- green lock screen mock -->
+      <div style="width:286px;background:#18181A;border-radius:42px;padding:11px;box-shadow:0 30px 80px rgba(0,0,0,0.5);transition:transform .2s ease;transform: {{ phoneTransform }};">
+        <div style="background: {{ phoneGradient }};border-radius:33px;aspect-ratio:9/19.2;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:30px 22px;color:#0B0C0E;text-align:center;position:relative;">
+          <div style="position:absolute;top:18px;left:0;right:0;display:flex;align-items:center;justify-content:center;gap:7px;font-size:12px;font-weight:700;letter-spacing:1px;text-transform:uppercase;opacity:.7;"><span style="width:7px;height:7px;border-radius:50%;background:#0B0C0E;animation:nwpulse 2s infinite;"></span>No-Way</div>
+          <div style="position:absolute;top:50px;left:16px;right:16px;text-align:left;">
+            <div style="background:rgba(11,12,14,0.86);border-radius:18px;padding:9px 11px;display:flex;align-items:center;gap:7px;">
+              <img src="blocked-icons.png" alt="" style="height:34px;width:auto;display:block;flex:none;">
+              <div style="flex:1;"></div>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"></path></svg>
+            </div>
+            <div style="font-size:12px;font-weight:600;color:#0B0C0E;opacity:.68;margin-top:7px;padding-left:4px;">{{ t.blockedSummary }}</div>
+          </div>
+          <div style="font-size:13px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;opacity:.6;margin-bottom:6px;">{{ t.lockLabel }}</div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:54px;letter-spacing:-2px;line-height:1;">01:47:32</div>
+          <p style="font-size:14px;font-weight:600;margin:14px 0 0;max-width:170px;opacity:.78;">{{ t.lockCaption }}</p>
+          <div style="position:absolute;bottom:26px;left:22px;right:22px;border:2px solid rgba(11,12,14,0.55);border-radius:16px;padding:11px;background: {{ recreBg }};color: {{ recreColor }};text-align:center;">
+            <div style="display:flex;align-items:center;justify-content:center;gap:8px;font-weight:800;font-size:17.5px;">
+              {{ t.lockBtn }}<svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"></path></svg>
+            </div>
+            <div style="font-weight:600;font-size:13.75px;opacity:.72;margin-top:3px;">{{ t.recreMinutes }}</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+  <div style="max-width: 1280px; margin: -20px auto 0; padding: 0 24px 56px; display: grid; grid-template-columns: 1fr 1fr; gap: 18px; width: 100%">
+    <div style="position: relative; background: radial-gradient(100% 130% at 8% 42%, rgba(118,185,0,0.26) 0%, rgba(118,185,0,0.08) 38%, rgba(22,22,22,0) 72%), #161616; border-radius: 18px; padding: 28px 30px; overflow: hidden; transition: transform .2s ease; transform: {{ autoTransform }}; width: 336px; height: 187px">
+      <span style="position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:0 4px 4px 0;background:linear-gradient(180deg, rgba(132,204,22,0) 0%, #84CC16 28%, #84CC16 72%, rgba(132,204,22,0) 100%);"></span>
+      <div style="width: 85px; height: 85px; border-radius: 14px; background: rgba(118,185,0,0.16); display: flex; align-items: center; justify-content: center; margin-bottom: 26px">
+        
+      <svg width="26" height="26" viewBox="0 0 24 24" style="width: 98px; height: 104px; color:#BFF230"><path d="M0 0h24v24H0z" fill="none"></path><path fill="currentColor" d="M12 2a5 5 0 0 1 5 5v3a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3v-6a3 3 0 0 1 3-3V7a5 5 0 0 1 5-5m0 12a2 2 0 0 0-1.995 1.85L10 16a2 2 0 1 0 2-2m0-10a3 3 0 0 0-3 3v3h6V7a3 3 0 0 0-3-3"></path></svg></div>
+      <div style="font-size: {{ kickerSizePx }};font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:#84CC16;margin-bottom:10px;transition:transform .2s ease;transform: {{ autoKickerTransform }};">{{ t.doorAutoKicker }}</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size: {{ titleSizePx }};letter-spacing:-0.6px;transition:transform .2s ease;transform: {{ autoTitleTransform }};">{{ t.doorAutoLabel }}</div>
+    </div>
+    <div style="position: relative; background: radial-gradient(100% 130% at 8% 42%, rgba(223,112,0,0.30) 0%, rgba(223,112,0,0.10) 38%, rgba(22,22,22,0) 72%), #161616; border-radius: 18px; padding: 28px 30px; overflow: hidden; transition: transform .2s ease; transform: {{ parentalTransform }}; width: 336px; height: 187px">
+      <span style="position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:0 4px 4px 0;background:linear-gradient(180deg, rgba(223,112,0,0) 0%, #DF7000 28%, #DF7000 72%, rgba(223,112,0,0) 100%);"></span>
+      <div style="width: 85px; height: 85px; border-radius: 14px; background: rgba(223, 112, 0, 0.16); display: flex; align-items: center; justify-content: center; margin-bottom: 26px">
+        
+      <svg width="28" height="28" viewBox="0 0 24 24" style="width: 86px; height: 84px; color:#FFAA00"><path d="M0 0h24v24H0z" fill="none"></path><path fill="currentColor" d="M7.5 2a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2M6 7h3a2 2 0 0 1 2 2v5.5H9.5V22h-4v-7.5H4V9a2 2 0 0 1 2-2m8.5 5a2 2 0 0 1 2-2a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2m-1 3h6v4H18v3h-3v-3h-1.5z"></path></svg></div>
+      <div style="font-size: {{ kickerSizePx }};font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:#DF7000;margin-bottom:10px;transition:transform .2s ease;transform: {{ parentalKickerTransform }};">{{ t.doorParentalKicker }}</div>
+      <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size: {{ titleSizePx }};letter-spacing:-0.6px;white-space:pre-line;transition:transform .2s ease;transform: {{ parentalTitleTransform }};">{{ t.doorParentalLabel }}</div>
+    </div>
+  </div>
+
+  <!-- ============ PARTI-PRIS — À TRIPLE TOUR (ROUGE) ============ -->
+  <section id="triple" style="border-top:1px solid rgba(255,255,255,0.07);">
+    <div style="max-width:1280px;margin:0 auto;padding:96px 24px;">
+      <div style="text-align:center;max-width:660px;margin:0 auto 56px;">
+        <div style="display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:#F2555A;margin-bottom:22px;"><span style="width:8px;height:8px;border-radius:50%;background:#F2555A;animation:nwpulse 2s infinite;"></span>{{ tri.eyebrow }}</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(40px,6vw,80px);line-height:0.92;letter-spacing:-0.04em;margin:0 0 18px;">{{ tri.title }}</h2>
+        <p style="margin:0;font-size:clamp(17px,1.8vw,21px);line-height:1.5;color:#9A9A95;">{{ tri.lead }}</p>
+      </div>
+
+      <!-- bento pleine largeur — irréversibilité -->
+      <div style="position:relative;margin-bottom:18px;border-radius:24px;">
+        <div style="position: absolute; inset: 0; border-radius: 24px; border: 1.5px solid transparent; background: linear-gradient(135deg,#76B900 0%,#A8B400 42%,#DF7000 100%) border-box; -webkit-mask: linear-gradient(#fff 0 0) padding-box,linear-gradient(#fff 0 0); -webkit-mask-composite: xor; mask-composite: exclude; pointer-events: none; margin-left: 40px; margin-right: 40px"></div>
+        <div style="position: relative; border-radius: 24px; background: linear-gradient(135deg, rgba(118,185,0,0.12) 0%, rgba(168,180,0,0.05) 45%, rgba(223,112,0,0.12) 100%); padding: 38px 40px; display: flex; align-items: center; gap: 40px; flex-wrap: wrap; margin-left: 40px; margin-right: 40px">
+          <div style="flex:none;position:relative;width:212px;height:200px;">
+            <!-- pivot orbital au POI central -->
+            <div style="position:absolute;left:106px;top:100px;width:0;height:0;animation:nwOrbit 18s linear infinite;">
+              <!-- médaillon — connexion -->
+              <div style="position:absolute;left:-33px;top:-95px;width:66px;height:66px;border-radius:50%;background:#15100E;border:1.5px solid rgba(118,185,0,0.55);display:flex;align-items:center;justify-content:center;animation:nwOrbitCounter 18s linear infinite;">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F5F5F2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0"></path><path d="M1.42 9a16 16 0 0 1 21.16 0"></path><path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path><path d="M12 20h.01"></path><line x1="3" y1="3" x2="21" y2="21" stroke="#FF5A5F" stroke-width="2.4"></line></svg>
+              </div>
+              <!-- médaillon — applis -->
+              <div style="position:absolute;left:-87px;top:-2px;width:66px;height:66px;border-radius:50%;background:#15100E;border:1.5px solid rgba(245,245,242,0.2);display:flex;align-items:center;justify-content:center;animation:nwOrbitCounter 18s linear infinite;">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F5F5F2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.6"></rect><rect x="14" y="3" width="7" height="7" rx="1.6"></rect><rect x="3" y="14" width="7" height="7" rx="1.6"></rect><rect x="14" y="14" width="7" height="7" rx="1.6"></rect><line x1="3" y1="3" x2="21" y2="21" stroke="#FF5A5F" stroke-width="2.4"></line></svg>
+              </div>
+              <!-- médaillon — web -->
+              <div style="position:absolute;left:21px;top:-2px;width:66px;height:66px;border-radius:50%;background:#15100E;border:1.5px solid rgba(223,112,0,0.55);display:flex;align-items:center;justify-content:center;animation:nwOrbitCounter 18s linear infinite;">
+                <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#F5F5F2" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9.2"></circle><path d="M2.8 12h18.4"></path><path d="M12 2.8c2.6 2.5 4 5.8 4 9.2s-1.4 6.7-4 9.2c-2.6-2.5-4-5.8-4-9.2s1.4-6.7 4-9.2z"></path><line x1="3" y1="3" x2="21" y2="21" stroke="#FF5A5F" stroke-width="2.4"></line></svg>
+              </div>
+            </div>
+          </div>
+          <div style="flex:1;min-width:300px;">
+            <p style="margin:0 0 12px;font-size:clamp(17px,1.7vw,21px);line-height:1.55;color:#F5F5F2;">{{ tri.bar1 }}</p>
+            <p style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:clamp(18px,1.9vw,24px);line-height:1.4;letter-spacing:-0.2px;color:#F5F5F2;">{{ tri.bar2 }}</p>
+          </div>
+        </div>
+      </div>
+
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px;margin-left:40px;margin-right:40px;">
+
+        <!-- carte 1 -->
+        <div style="position:relative;overflow:hidden;border-radius:22px;padding:30px 26px 26px;background:radial-gradient(120% 90% at 50% 0%, rgba(242,85,90,0.18) 0%, rgba(242,85,90,0.05) 42%, rgba(22,12,13,0) 72%), #160C0D;border:1px solid rgba(242,85,90,0.2);display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;">
+          <div style="width:42px;height:42px;border-radius:13px;border:1.5px solid rgba(242,85,90,0.45);color:#FF7A7E;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:21px;display:flex;align-items:center;justify-content:center;">1</div>
+          <div style="position:relative;width:100%;height:138px;display:flex;align-items:center;justify-content:center;">
+            <div style="position:absolute;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(242,85,90,0.55) 0%,rgba(242,85,90,0) 70%);animation:nwGlow 3.6s ease-in-out infinite;"></div>
+            <div style="position:relative;width:96px;height:128px;transform-origin:50% 22%;animation:nwKeyShake 3.6s ease-in-out infinite;">
+              <svg width="96" height="128" viewBox="0 0 96 128" fill="none" stroke="#FF5A5F" stroke-linecap="round">
+                <g><circle cx="48" cy="32" r="20" stroke-width="9"></circle><line x1="48" y1="52" x2="48" y2="76" stroke-width="10"></line></g>
+                <g style="transform-box:fill-box;transform-origin:50% 0%;animation:nwKeyBreak 3.6s ease-in-out infinite;"><line x1="48" y1="80" x2="48" y2="106" stroke-width="10"></line><line x1="48" y1="92" x2="62" y2="92" stroke-width="8"></line><line x1="48" y1="104" x2="59" y2="104" stroke-width="8"></line></g>
+              </svg>
+            </div>
+          </div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-0.3px;line-height:1.2;min-height:2.4em;display:flex;align-items:center;">{{ tri.c1 }}</div>
+          <div style="margin-top:auto;display:inline-flex;align-items:center;gap:8px;background:rgba(242,85,90,0.14);border:1px solid rgba(242,85,90,0.32);color:#FF7A7E;padding:8px 16px;border-radius:999px;font-weight:800;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;animation:nwStamp 3.6s ease-in-out infinite;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7A7E" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>{{ tri.fail }}
+          </div>
+        </div>
+
+        <!-- carte 2 -->
+        <div style="position:relative;overflow:hidden;border-radius:22px;padding:30px 26px 26px;background:radial-gradient(120% 90% at 50% 0%, rgba(242,85,90,0.18) 0%, rgba(242,85,90,0.05) 42%, rgba(22,12,13,0) 72%), #160C0D;border:1px solid rgba(242,85,90,0.2);display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;">
+          <div style="width:42px;height:42px;border-radius:13px;border:1.5px solid rgba(242,85,90,0.45);color:#FF7A7E;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:21px;display:flex;align-items:center;justify-content:center;">2</div>
+          <div style="position:relative;width:100%;height:138px;display:flex;align-items:center;justify-content:center;">
+            <div style="position:absolute;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(242,85,90,0.55) 0%,rgba(242,85,90,0) 70%);animation:nwGlow 3.6s ease-in-out infinite;animation-delay:-1.2s;"></div>
+            <div style="position:relative;width:96px;height:128px;transform-origin:50% 22%;animation:nwKeyShake 3.6s ease-in-out infinite;animation-delay:-1.2s;">
+              <svg width="96" height="128" viewBox="0 0 96 128" fill="none" stroke="#FF5A5F" stroke-linecap="round">
+                <g><circle cx="48" cy="32" r="20" stroke-width="9"></circle><line x1="48" y1="52" x2="48" y2="76" stroke-width="10"></line></g>
+                <g style="transform-box:fill-box;transform-origin:50% 0%;animation:nwKeyBreak 3.6s ease-in-out infinite;animation-delay:-1.2s;"><line x1="48" y1="80" x2="48" y2="106" stroke-width="10"></line><line x1="48" y1="92" x2="62" y2="92" stroke-width="8"></line><line x1="48" y1="104" x2="59" y2="104" stroke-width="8"></line></g>
+              </svg>
+            </div>
+          </div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-0.3px;line-height:1.2;min-height:2.4em;display:flex;align-items:center;">{{ tri.c2 }}</div>
+          <div style="margin-top:auto;display:inline-flex;align-items:center;gap:8px;background:rgba(242,85,90,0.14);border:1px solid rgba(242,85,90,0.32);color:#FF7A7E;padding:8px 16px;border-radius:999px;font-weight:800;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;animation:nwStamp 3.6s ease-in-out infinite;animation-delay:-1.2s;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7A7E" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>{{ tri.fail }}
+          </div>
+        </div>
+
+        <!-- carte 3 -->
+        <div style="position:relative;overflow:hidden;border-radius:22px;padding:30px 26px 26px;background:radial-gradient(120% 90% at 50% 0%, rgba(242,85,90,0.18) 0%, rgba(242,85,90,0.05) 42%, rgba(22,12,13,0) 72%), #160C0D;border:1px solid rgba(242,85,90,0.2);display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;">
+          <div style="width:42px;height:42px;border-radius:13px;border:1.5px solid rgba(242,85,90,0.45);color:#FF7A7E;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:21px;display:flex;align-items:center;justify-content:center;">3</div>
+          <div style="position:relative;width:100%;height:138px;display:flex;align-items:center;justify-content:center;">
+            <div style="position:absolute;width:150px;height:150px;border-radius:50%;background:radial-gradient(circle,rgba(242,85,90,0.55) 0%,rgba(242,85,90,0) 70%);animation:nwGlow 3.6s ease-in-out infinite;animation-delay:-2.4s;"></div>
+            <div style="position:relative;width:96px;height:128px;transform-origin:50% 22%;animation:nwKeyShake 3.6s ease-in-out infinite;animation-delay:-2.4s;">
+              <svg width="96" height="128" viewBox="0 0 96 128" fill="none" stroke="#FF5A5F" stroke-linecap="round">
+                <g><circle cx="48" cy="32" r="20" stroke-width="9"></circle><line x1="48" y1="52" x2="48" y2="76" stroke-width="10"></line></g>
+                <g style="transform-box:fill-box;transform-origin:50% 0%;animation:nwKeyBreak 3.6s ease-in-out infinite;animation-delay:-2.4s;"><line x1="48" y1="80" x2="48" y2="106" stroke-width="10"></line><line x1="48" y1="92" x2="62" y2="92" stroke-width="8"></line><line x1="48" y1="104" x2="59" y2="104" stroke-width="8"></line></g>
+              </svg>
+            </div>
+          </div>
+          <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-0.3px;line-height:1.2;min-height:2.4em;display:flex;align-items:center;">{{ tri.c3 }}</div>
+          <div style="margin-top:auto;display:inline-flex;align-items:center;gap:8px;background:rgba(242,85,90,0.14);border:1px solid rgba(242,85,90,0.32);color:#FF7A7E;padding:8px 16px;border-radius:999px;font-weight:800;font-size:12px;letter-spacing:1.5px;text-transform:uppercase;animation:nwStamp 3.6s ease-in-out infinite;animation-delay:-2.4s;">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FF7A7E" stroke-width="3" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg>{{ tri.fail }}
+          </div>
+        </div>
+
+      </div>
+
+      <!-- cartouche engagement -->
+      <div style="margin-top: 22px; position: relative; overflow: hidden; border-radius: 22px; padding: 36px 38px; background: linear-gradient(110deg, rgba(242,85,90,0.16) 0%, rgba(242,85,90,0.05) 46%, rgba(24,24,26,0) 80%), #161113; border: 1px solid rgba(242,85,90,0.24); display: flex; align-items: center; gap: 26px; flex-wrap: wrap; margin-left: 40px; margin-right: 40px">
+        <div style="flex:none;width:62px;height:62px;border-radius:18px;background:rgba(242,85,90,0.16);display:flex;align-items:center;justify-content:center;">
+          <svg width="54" height="54" viewBox="0 0 24 24" style="color:#FF7A7E;"><path d="M0 0h24v24H0z" fill="none"></path><path fill="currentColor" d="M19.63 3.65a1 1 0 0 0-.84-.2a8 8 0 0 1-6.22-1.27a1 1 0 0 0-1.14 0a8 8 0 0 1-6.22 1.27a1 1 0 0 0-.84.2a1 1 0 0 0-.37.78v7.45a9 9 0 0 0 3.77 7.33l3.65 2.6a1 1 0 0 0 1.16 0l3.65-2.6A9 9 0 0 0 20 11.88V4.43a1 1 0 0 0-.37-.78M18 11.88a7 7 0 0 1-2.93 5.7L12 19.77l-3.07-2.19A7 7 0 0 1 6 11.88v-6.3a10 10 0 0 0 6-1.39a10 10 0 0 0 6 1.39Z"></path></svg>
+        </div>
+        <div style="flex:1;min-width:260px;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:#F2555A;margin-bottom:10px;">{{ tri.engKicker }}</div>
+          <p style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:500;font-size:clamp(18px,2vw,24px);line-height:1.4;letter-spacing:-0.2px;color:#F5F5F2;">{{ tri.engBody }}</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ PRISE EN MAIN — BASE DU SYSTÈME ============ -->
+  <section id="base" style="border-top:1px solid rgba(255,255,255,0.07);">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 96px 24px; height: 1991px">
+
+      <div style="text-align:center;max-width:660px;margin:0 auto 56px;">
+        <div style="display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:#76B900;margin-bottom:22px;"><span style="width:8px;height:8px;border-radius:50%;background:#76B900;animation:nwpulse 2s infinite;"></span>{{ t.pmEyebrow }}</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(40px,6vw,80px);line-height:0.92;letter-spacing:-0.04em;margin:0 0 18px;">{{ t.pmTitle }}</h2>
+        <p style="margin:0;font-size:clamp(17px,1.8vw,21px);line-height:1.5;color:#9A9A95;">{{ t.pmLead }}</p>
+      </div>
+
+      <!-- ░░ sous-section 01 — LISTES ░░ -->
+      <div style="display: flex; align-items: flex-end; gap: 30px; margin: 8px 0 40px; margin-bottom: 100px">
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(60px,9vw,124px);line-height:0.74;letter-spacing:-0.05em;color:transparent;-webkit-text-stroke:1.5px #DCF500;flex:none;">01</span>
+        <div style="flex:none;padding-bottom:9px;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:#F5F5F2;margin-bottom:5px;">{{ t.pmSub1Tag }}</div>
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(34px,4.6vw,58px);line-height:0.86;letter-spacing:-0.035em;margin:0;color:#DCF500;">{{ t.pmSub1 }}</h3>
+        </div>
+        <span style="flex:1;height:2px;border-radius:2px;background:linear-gradient(90deg,rgba(118,185,0,0.55),rgba(255,255,255,0.04));margin-bottom:24px;"></span>
+      </div>
+
+      <div style="display: grid; grid-template-columns: 0.82fr 1.18fr; gap: 56px; align-items: center; margin-bottom: 20px; height: 511px">
+
+        <!-- capture d'écran (scalable + rotation) -->
+        <div style="display:flex;justify-content:center;">
+          <div style="width:268px;background:#000;border-radius:40px;box-shadow:0 28px 70px rgba(0,0,0,0.55);overflow:hidden;border:1px solid rgba(255,255,255,0.08);transform: translate(27px, -49px) rotate(-5deg) scale(1.45);transform-origin:center;">
+            <img src="detoxoir.png" alt="Écran « Nouvelle liste » de No-Way" style="display:block;width:100%;height:auto;border-radius:40px;">
+          </div>
+        </div>
+
+        <div style="height: 600px">
+          <p style="margin: 0 0 26px; font-size: 17px; line-height: 1.55; color: #9A9A95; max-width: 46ch; margin-left: 50px">La création d'une liste commence toujours par le choix du périmètre de navigation : les listes blanches sont bien plus radicales que les listes noires qui elles, sont totalement ciblées sur les applications d'usage toxique.</p>
+
+          <div style="display:grid;gap:14px;">
+
+            <!-- Liste noire (fond noir) -->
+            <div style="position: relative; overflow: hidden; background: #0B0C0E; border: 1px solid rgba(255,255,255,0.14); border-radius: 20px; padding: 26px 28px; display: flex; gap: 20px; align-items: flex-start; top: 20px; margin-right: 50px; margin-left: 50px">
+              <div style="flex:none;width:54px;height:54px;border-radius:15px;background:rgba(255,255,255,0.08);display:flex;align-items:center;justify-content:center;">
+                <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#F5F5F2" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><line x1="5.6" y1="5.6" x2="18.4" y2="18.4"></line></svg>
+              </div>
+              <div style="flex:1;">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap;">
+                  <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:21px;letter-spacing:-0.4px;color:#F5F5F2;">{{ t.pmNoireTitle }}</span>
+                  <span style="font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#0B0C0E;background:#F5F5F2;border-radius:999px;padding:4px 11px;">{{ t.pmNoireBadge }}</span>
+                </div>
+                <p style="margin:0;font-size:15.5px;line-height:1.55;color:rgba(245,245,242,0.62);white-space:pre-line;">{{ t.pmNoireDesc }}</p>
+              </div>
+            </div>
+
+            <!-- Liste blanche (fond blanc) -->
+            <div style="position: relative; overflow: hidden; background: #F5F5F2; border: 1px solid rgba(0,0,0,0.1); border-radius: 20px; padding: 26px 28px; display: flex; gap: 20px; align-items: flex-start; top: 50px; margin-right: 50px; margin-left: 50px">
+              <div style="flex:none;width:54px;height:54px;border-radius:15px;background:rgba(11,12,14,0.07);display:flex;align-items:center;justify-content:center;">
+                <svg width="28" height="28" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"></path><g fill="none" stroke="#0B0C0E" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><circle cx="8" cy="16" r=".5"></circle><path d="M18 2h4v5h-3v3h-3v2l-2.3 2.3a6 6 0 1 1-4-4Z"></path></g></svg>
+              </div>
+              <div style="flex:1;">
+                <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px;flex-wrap:wrap;">
+                  <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:21px;letter-spacing:-0.4px;color:#0B0C0E;">{{ t.pmBlancheTitle }}</span>
+                  <span style="font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#F5F5F2;background:#0B0C0E;border-radius:999px;padding:4px 11px;">{{ t.pmBlancheBadge }}</span>
+                </div>
+                <p style="margin:0;font-size:15.5px;line-height:1.55;color:rgba(11,12,14,0.62);white-space:pre-line;">{{ t.pmBlancheDesc }}</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- ░░ sous-section 02 — TEMPORALITÉ ░░ -->
+      <div style="display: flex; align-items: flex-end; gap: 30px; margin: 64px 0 28px; margin-top: 150px">
+        <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(60px,9vw,124px);line-height:0.74;letter-spacing:-0.05em;color:transparent;-webkit-text-stroke:1.5px #DCF500;flex:none;">02</span>
+        <div style="flex:none;padding-bottom:9px;">
+          <div style="font-size:12px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:#F5F5F2;margin-bottom:5px;">{{ t.pmSub2Tag }}</div>
+          <h3 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(34px,4.6vw,58px);line-height:0.86;letter-spacing:-0.035em;margin:0;color:#DCF500;">Temporalités</h3>
+        </div>
+        <span style="flex:1;height:2px;border-radius:2px;background:linear-gradient(90deg,rgba(223,112,0,0.55),rgba(255,255,255,0.04));margin-bottom:24px;"></span>
+      </div>
+
+      <div style="display:grid;grid-template-columns:0.82fr 1.18fr;gap:56px;align-items:center;">
+
+        <div style="height: 356px; width: 584px; margin-left: 40px">
+          <p style="margin: 0 0 26px; font-size: 17px; line-height: 1.55; color: #9A9A95; max-width: 76ch">{{ t.pmTempoIntro }}</p>
+
+          <div style="display:grid;gap:12px;">
+            <sc-for list="{{ tempoItems }}" as="item" hint-placeholder-count="3">
+              <div style="background:#18181A;border:1px solid rgba(223,112,0,0.18);border-radius:18px;overflow:hidden;">
+                <button onClick="{{ item.onClick }}" style="cursor: pointer; width: 100%; background: none; border: none; color: #F5F5F2; text-align: left; padding: 20px 22px; display: flex; align-items: center; gap: 19px; font-family: 'Hanken Grotesk',sans-serif; padding-top: 40px; padding-bottom: 40px">
+                  <span style="flex:none;width:42px;height:42px;border-radius:12px;background:rgba(223,112,0,0.14);display:flex;align-items:center;justify-content:center;color:#FFAA00;">{{ item.icon }}</span>
+                  <span style="flex: 1; font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: 36px; letter-spacing: -0.3px">{{ item.title }}</span>
+                  <span style="flex:none;width:26px;height:26px;border-radius:8px;background:#232325;display:flex;align-items:center;justify-content:center;color:#FFAA00;font-weight:700;font-size:18px;transition:transform .2s ease;transform: {{ item.chevTransform }};">
+                    <sc-if value="{{ item.open }}" hint-placeholder-val="{{ false }}">−</sc-if>
+                    <sc-if value="{{ item.closed }}" hint-placeholder-val="{{ true }}">+</sc-if>
+                  </span>
+                </button>
+                <sc-if value="{{ item.open }}" hint-placeholder-val="{{ false }}">
+                  <p style="margin:0;padding:0 22px 22px 80px;color:#9A9A95;font-size:15px;line-height:1.6;">{{ item.desc }}</p>
+                </sc-if>
+              </div>
+            </sc-for>
+          </div>
+        </div><div style="display:flex;justify-content:center;">
+          <video id="nwTempoVid" src="noway-anim1.mp4" autoplay="" loop="" muted="" playsinline="" style="display:block;width:268px;height:auto;box-shadow:0 28px 70px rgba(0,0,0,0.55);transform: translate(-28px, 107px) rotate(4deg) scale(1.29);transform-origin:center;"></video>
+        </div>
+
+        
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ============ MODE AUTO (VERT) ============ -->
+  <section id="auto" style="border-top:1px solid rgba(255,255,255,0.07);">
+    
+  </section>
+
+  <!-- ============ RÉCRÉATION (contrasté) ============ -->
+  <section id="recreation" style="color: #0A1228; border-top: 1px solid rgba(255,255,255,0.07); background-color: #76B900; width: 1280px; margin: 0 auto; text-align: left; display: flex">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 48px 24px; display: grid; grid-template-columns: 0.62fr 1.38fr; gap: 48px; align-items: center; width: 1280px">
+      <div style="display:flex;justify-content:center;">
+        <div style="width:100%;max-width:300px;perspective:1400px;transform: {{ recImgTransform }};">
+          <div style="position:relative;width:100%;height:410px;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.62,.04,.3,1.02);transform: {{ rec.photoTransform }};">
+            <sc-for list="{{ rec.photoFaces }}" as="pf" hint-placeholder-count="2">
+              <img src="{{ pf.src }}" alt="Récréation" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; border-radius: 20px; border: 8px solid #DF7000; box-shadow: 0 18px 44px rgba(0,0,0,0.35); backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: {{ pf.tf }}; padding: {{ pf.pad }}">
+            </sc-for>
+          </div>
+        </div>
+      </div>
+      <div>
+        <div style="margin-bottom: 18px;transform: {{ recTitleTransform }};"><img src="recre-title.png" alt="Récréation" style="display:block;height:64px;width:auto;"></div>
+
+        <!-- compteur de cagnotte (la barre se réduit depuis la gauche) -->
+        <div style="display:flex;align-items:center;gap:16px;margin-bottom:26px;transform: {{ recMeterTransform }};">
+          <div style="flex:none;font-family:'Space Grotesk',sans-serif;font-weight:700;letter-spacing:-1px;line-height:1;color:#0A1228;font-size:40px;">{{ rec.minutes }}<span style="font-size:16px;font-weight:700;letter-spacing:0;margin-left:4px;">min</span></div>
+          <div style="flex:1;">
+            <div style="font-size:11px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#0A1228;opacity:.55;margin-bottom:7px;">Cagnotte de récréation</div>
+            <div style="height:9px;border-radius:99px;background:rgba(10,18,40,0.18);overflow:hidden;display:flex;justify-content:flex-end;"><div style="height:100%;border-radius:99px;background:#0A1228;transition:width .6s cubic-bezier(.22,1,.36,1);width: {{ rec.barPct }};"></div></div>
+          </div>
+        </div>
+
+        <!-- scène à hauteur fixe : phrases gravées sur un cube qui tourne de bas en haut -->
+        <div style="height:160px;perspective:1100px;margin-bottom:24px;">
+          <div id="recCube" style="position:relative;height:160px;transform-style:preserve-3d;transition:transform .8s cubic-bezier(.62,.04,.3,1.02);transform: {{ rec.cubeTransform }};">
+            <sc-for list="{{ rec.faces }}" as="face" hint-placeholder-count="4">
+              <div style="position:absolute;left:0;right:0;top:0;height:160px;display:flex;align-items:center;backface-visibility:hidden;-webkit-backface-visibility:hidden; transform: {{ face.tf }};">
+                <p style="margin:0;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(21px,2.2vw,30px);line-height:1.3;letter-spacing:-0.02em;color:#0A1228;">{{ face.txt }}</p>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+
+        <!-- bouton : flip vers le paragraphe suivant -->
+        <div style="margin-top:6px;transform: {{ recBtnTransform }}; {{ rec.btnWrap }}">
+          <button onClick="{{ rec.spend }}" style="cursor:pointer;display:inline-flex;align-items:center;gap:10px;background:#0A1228;color:#F5F5F2;border:none;border-radius:14px;padding:15px 24px;font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:15px;animation:nwBtnPulse 1.8s ease-in-out infinite;will-change:transform;" style-hover="animation:none;transform:scale(1.05);">
+            Prendre une récréation
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6 4l14 8-14 8z"></path></svg>
+          </button>
+        </div>
+        <!-- état épuisé -->
+        <div style="margin-top:6px;align-items:center;gap:12px; {{ rec.doneWrap }}">
+          <span style="display:inline-flex;align-items:center;gap:9px;background:rgba(10,18,40,0.12);border:1.5px solid rgba(10,18,40,0.35);color:#0A1228;padding:13px 20px;border-radius:14px;font-weight:800;font-size:14px;letter-spacing:.3px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0A1228" stroke-width="2.4" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"></path></svg>
+            Cagnotte épuisée — le blocage reprend
+          </span>
+          <button onClick="{{ rec.reset }}" title="Réinitialiser la cagnotte" aria-label="Réinitialiser la cagnotte" style="cursor:pointer;flex:none;display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;background:#0A1228;color:#F5F5F2;border:none;box-shadow:0 8px 20px rgba(0,0,0,0.25);transition:transform .45s cubic-bezier(.22,1,.36,1);" style-hover="transform:rotate(-90deg);" style-active="transform:rotate(-180deg);">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 3v5h5"></path></svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ MODE PARENTAL (ORANGE) ============ -->
+  <section id="parental" style="border-top:1px solid rgba(255,255,255,0.07);">
+    <div style="max-width:1280px;margin:0 auto;padding:96px 24px;">
+      <div style="display: flex; align-items: center; gap: 10px; font-size: 12px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: #DF7000; margin-bottom: 20px; flex-direction: row; justify-content: center"><span style="width: 9px; height: 9px; border-radius: 50%; background: rgb(223, 112, 0);"></span>ESPACE PARENTS</div>
+      <h2 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: clamp(32px,4.5vw,58px); line-height: 1.02; letter-spacing: -0.035em; margin: 0 auto 48px; max-width: 356ch; width: 745px; height: 118px; text-align: center; margin-bottom: 17px">Réguler l'usage de l'enfant. Sans être intrusif.</h2><p style="margin: 0; font-size: clamp(17px,1.8vw,21px); line-height: 1.5; color: #9A9A95; width: 609px; display: block; margin: 0 auto; text-align: center; margin-bottom: 55px">Pas de contrôle parental excessif. Juste la main sur le périmètre de navigation de l'enfant, et la liste des sites visités.&nbsp;</p>
+
+      <div style="display:grid;grid-template-columns:0.85fr 1.15fr;gap:48px;align-items:start;">
+        <div style="display:flex;flex-direction:column;align-items:center;gap:28px;order:0;">
+          <!-- orange PIN screen -->
+          <div style="width: 316px; background: #18181A; border-radius: 40px; padding: 10px; box-shadow: 0 24px 60px rgba(0,0,0,0.45); border: 2px solid #DF7000">
+            <img src="esparents.png" alt="Espace parent" style="display:block;width:100%;border-radius:31px;">
+          </div>
+        </div>
+
+        <div style="margin-right: 40px">
+          <p style="margin: 0 0 22px; font-size: 24px; line-height: 1.25; color: #76B900; font-weight: 900">{{ t.parentalIntro }}</p>
+          <div style="display:grid;gap:12px;margin-bottom:36px;">
+            <sc-for list="{{ t.parentalPerks }}" as="perk" hint-placeholder-count="4">
+              <div style="background:radial-gradient(130% 100% at 0% 0%, rgba(223,112,0,0.18) 0%, rgba(223,112,0,0.04) 52%, rgba(22,22,22,0) 82%), #161616; border:1px solid rgba(223,112,0,0.22); border-radius:18px; padding:18px 20px; display:flex; gap:14px; align-items:flex-start;">
+                <div style="flex:none;width:30px;height:30px;border-radius:9px;background:rgba(223,112,0,0.18);display:flex;align-items:center;justify-content:center;margin-top:1px;">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#FFAA00" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5"></path></svg>
+                </div>
+                <div style="flex:1;">
+                  <div style="font-family:'Space Grotesk',sans-serif;font-weight:600;font-size:15.5px;line-height:1.35;letter-spacing:-0.2px;color:#F5F5F2;">{{ perk.title }}</div>
+                  <sc-if value="{{ perk.desc }}" hint-placeholder-val="{{ false }}">
+                    <div style="margin-top:5px;font-size:13.5px;line-height:1.5;color:#9A9A95;">{{ perk.desc }}</div>
+                  </sc-if>
+                  <sc-if value="{{ perk.sub }}" hint-placeholder-val="{{ false }}">
+                    <div style="margin-top:13px;background:rgba(223,112,0,0.10);border:1px solid rgba(223,112,0,0.2);border-radius:13px;padding:12px 14px;">
+                      <div style="display:flex;align-items:center;gap:8px;margin-bottom:7px;font-size:10.5px;font-weight:800;letter-spacing:1.4px;text-transform:uppercase;color:#FFAA00;">
+                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#FFAA00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v14H4z"></path><path d="M4 7l8 6 8-6"></path></svg>{{ t.subscriptionTag }}
+                      </div>
+                      <div style="font-size:13px;line-height:1.5;color:#E2B488;">{{ perk.sub }}</div>
+                    </div>
+                  </sc-if>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+          
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FONCTIONNALITÉS ============ -->
+  
+
+  <!-- ============ APERÇU APP — emplacements captures ============ -->
+  
+
+  <!-- ============ VIE PRIVÉE ============ -->
+  <section id="privacy" style="border-top: 1px solid rgba(255,255,255,0.07); height: 560px">
+    <div style="max-width: 1280px; margin: 0 auto; padding: 96px 24px; display: grid; grid-template-columns: 1fr 1fr; gap: 105px; align-items: center; padding-top: 34px; padding-bottom: 34px; height: 478px">
+      <div style="height: 422px; margin-left: 40px; width: 576px">
+        <div style="display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:#6E6E68;margin-bottom:20px;"><span style="width:7px;height:7px;border-radius:50%;background:#76B900;"></span>{{ t.privacyEyebrow }}</div>
+        <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(32px,4.5vw,56px);line-height:1.02;letter-spacing:-0.035em;margin:0 0 32px;">Rien ne part ailleurs</h2>
+        <div style="display:grid;gap:12px;">
+          <sc-for list="{{ t.privacyPoints }}" as="p" hint-placeholder-count="4">
+            <div style="display:flex;align-items:center;gap:14px;background:#18181A;border-radius:16px;padding:18px 22px;">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#76B900" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12.5l4.5 4.5L19 6.5"></path></svg>
+              <span style="font-size: 23px; font-weight: 600; flex: 1">{{ p }}</span>
+            </div>
+          </sc-for>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:center;">
+        <div style="display: flex; align-items: center; justify-content: center; width: 379px; max-width: 420px; aspect-ratio: 1; padding: 40px; border-radius: 30%; background: radial-gradient(100% 100% at 30% 20%, rgba(118,185,0,0.22) 0%, rgba(118,185,0,0.06) 48%, rgba(22,22,22,0) 78%), #161616; border: 1px solid rgba(118,185,0,0.22); color: #76B900; margin-top: 60px">
+        <svg xmlns="http://www.w3.org/2000/svg" width="360" height="360" viewBox="0 0 14 14" style="width:100%;height:auto;">
+          <path d="M0 0h14v14H0z" fill="none"></path>
+          <path fill="currentColor" fill-rule="evenodd" d="M4.347.5a1.5 1.5 0 0 0-1.479 1.249l-.761 4.126H1a.625.625 0 1 0 0 1.25h12a.625.625 0 1 0 0-1.25h-1.107l-.761-4.126A1.5 1.5 0 0 0 9.652.5zm4.278 10.25a1.626 1.626 0 1 1 3.251 0a1.626 1.626 0 0 1-3.251 0M7 9.124c.29 0 .547.06.77.171a2.876 2.876 0 1 1-.394 1.455h-.002v.009v-.008a.6.6 0 0 0-.059-.222a.26.26 0 0 0-.085-.104c-.027-.018-.09-.051-.231-.051s-.205.033-.232.051a.26.26 0 0 0-.085.104a.6.6 0 0 0-.058.212v.009a2.875 2.875 0 1 1-.395-1.455A1.7 1.7 0 0 1 7 9.124m-1.626 1.625v-.036a1.625 1.625 0 1 0 0 .037" clip-rule="evenodd"></path>
+        </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ HONNÊTETÉ ============ -->
+  
+
+  <!-- ============ PRIX ============ -->
+  <section id="price" style="border-top: 1px solid rgba(255,255,255,0.07); margin-bottom: 102px">
+    <div style="max-width:1280px;margin:0 auto;padding:96px 24px;text-align:center;">
+      <div style="font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:#6E6E68;margin-bottom:20px;">{{ t.priceEyebrow }}</div>
+      <h2 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(32px,4.5vw,56px);line-height:1.02;letter-spacing:-0.035em;margin:0 0 44px;">30 jours d'essai gratuit.<br>Puis un achat unique.</h2>
+      <div style="display:flex;align-items:stretch;justify-content:center;gap:18px;flex-wrap:wrap;">
+        <div style="flex:none;width:440px;max-width:100%;text-align:left;background:#18181A;border-radius:24px;padding:40px 36px;display:flex;flex-direction:column;">
+          <div style="display:flex;align-items:baseline;justify-content:center;gap:10px;margin-bottom:6px;">
+            <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:64px;letter-spacing:-2px;color:#BFF230;">{{ price }}</span>
+          </div>
+          <div style="font-size:14px;font-weight:600;color:#6E6E68;margin-bottom:28px;text-align:center;">{{ t.pricePer }}</div>
+          <div style="display:grid;gap:12px;text-align:left;margin-bottom:30px;">
+            <sc-for list="{{ t.priceFeatures }}" as="f" hint-placeholder-count="4">
+              <div style="display:flex;align-items:center;gap:12px;font-size:15px;font-weight:600;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#76B900" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;"><path d="M5 12.5l4.5 4.5L19 6.5"></path></svg>{{ f }}
+              </div>
+            </sc-for>
+          </div>
+          <a href="#download" style="margin-top:auto;display:flex;align-items:center;justify-content:center;gap:12px;background:#76B900;color:#0B0C0E;padding:16px;border-radius:16px;">
+            <svg width="20" height="22" viewBox="0 0 22 24" fill="#0B0C0E"><path d="M1 1.5v21l11-10.5L1 1.5z"></path></svg>
+            <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;">{{ t.priceCta }}</span>
+          </a>
+        </div>
+
+        <div style="flex:none;width:300px;max-width:100%;text-align:left;background:radial-gradient(130% 100% at 0% 0%, rgba(223,112,0,0.16) 0%, rgba(223,112,0,0.04) 52%, rgba(22,22,22,0) 82%), #161616;border:1px solid rgba(223,112,0,0.24);border-radius:24px;padding:32px 28px;display:flex;flex-direction:column;">
+          <div style="display: flex; align-items: baseline; gap: 6px; margin-bottom: 20px; margin-top: 26px">
+            <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:40px;letter-spacing:-1px;color:#F5F5F2;">3 €</span>
+            <span style="font-size:14px;font-weight:600;color:#9A9A95;">/ mois (optionnel)</span>
+          </div><div style="display: flex; align-items: center; gap: 9px; font-size: 22px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: #FFAA00; margin-bottom: 16px">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#FFAA00" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="flex: none; width: 42px; height: 78px"><path d="M4 5h16v14H4z"></path><path d="M4 7l8 6 8-6"></path></svg>Rapport de consultation
+          </div>
+          
+          <div style="display:flex;gap:12px;align-items:flex-start;font-size:15px;line-height:1.55;color:#9A9A95;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFAA00" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex:none;margin-top:2px;"><path d="M5 12.5l4.5 4.5L19 6.5"></path></svg>
+            <span style="font-size: 19px">Envoi automatisé par mail / SMS de l'inventaire des sites &amp; applis consultés de votre enfant.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ FAQ ============ -->
+  
+
+  <!-- ============ CTA FINAL ============ -->
+  
+
+  <!-- ============ FOOTER ============ -->
+  <footer style="border-top:1px solid rgba(255,255,255,0.07);">
+    <div style="max-width:1280px;margin:0 auto;padding:44px 24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:18px;">
+      <div style="display:flex;align-items:center;gap:9px;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;letter-spacing:-0.4px;">
+        <span style="width:42px;height:42px;border-radius:10px;background:#DF7000;border:2px solid #0B0C0E;display:inline-flex;align-items:center;justify-content:center;color:#76B900;flex:none;">
+          <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24"><path fill="currentColor" stroke="#0B0C0E" stroke-width="1" stroke-linejoin="round" d="M10.5 3c4.14 0 7.5 3.36 7.5 7.5V13h4l-6 7l-6-7h4v-2.5C14 8.57 12.43 7 10.5 7S7 8.57 7 10.5V18H3v-7.5C3 6.36 6.36 3 10.5 3"></path></svg>
+        </span>NO-WAY</div>
+      <span style="font-size:13px;color:#6E6E68;">{{ t.footerLegal }}</span>
+    </div>
+  </footer>
+
+</div></x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1160,&quot;height&quot;:900},&quot;priceAmount&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;25 €&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;recreBg&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;options&quot;:[&quot;transparent&quot;,&quot;#0B0C0E&quot;,&quot;#76B900&quot;,&quot;#DF7000&quot;,&quot;#F5F5F2&quot;],&quot;default&quot;:&quot;transparent&quot;,&quot;tsType&quot;:&quot;string&quot;},&quot;recreColor&quot;:{&quot;editor&quot;:&quot;color&quot;,&quot;options&quot;:[&quot;#0B0C0E&quot;,&quot;#F5F5F2&quot;,&quot;#76B900&quot;,&quot;#DF7000&quot;],&quot;default&quot;:&quot;#0B0C0E&quot;,&quot;tsType&quot;:&quot;string&quot;}}">
+class Component extends DCLogic {
+  state = (() => {
+    const base = { lang: "fr", openFaq: -1, openTempo: 0, recStep: 0, kickerSize: 15, titleSize: 28, phoneScale: 120, phoneX: 19, phoneY: 81, gradBlend: 5, shotScale: 149, shotRotate: -4, shotX: -55, shotY: 0, vidScale: 123, vidRotate: -5, vidX: -3, vidY: 107, off: { autoX: 0, autoY: -175, parentalX: -203, parentalY: -175, gpX: -1, gpY: 215, autoKickerX: 7, autoKickerY: -1, autoTitleX: 104, autoTitleY: -117, parentalKickerX: 0, parentalKickerY: 0, parentalTitleX: 118, parentalTitleY: -136, recImgX: -2, recImgY: 0, recMeterX: -31, recMeterY: 24, recTitleX: 547, recTitleY: 0, recBtnX: -36, recBtnY: 7 } };
+    try {
+      const s = JSON.parse(localStorage.getItem("noway_tweaks_v2"));
+      if (s && typeof s === "object") {
+        if (s.off && typeof s.off === "object") Object.assign(base.off, s.off);
+        ["kickerSize", "titleSize", "phoneScale", "phoneX", "phoneY", "gradBlend", "shotScale", "shotRotate", "shotX", "shotY", "vidScale", "vidRotate", "vidX", "vidY"].forEach(k => { if (s[k] != null) base[k] = s[k]; });
+      }
+    } catch (e) {}
+    return base;
+  })();
+
+  componentDidMount() {
+    try {
+      const vid = document.getElementById("nwTempoVid");
+      if (vid) {
+        vid.loop = true;
+        vid.muted = true;
+        vid.volume = 0;
+        vid.removeAttribute("controls");
+        vid.addEventListener("ended", () => { vid.currentTime = 0; vid.play().catch(() => {}); });
+        vid.play().catch(() => {});
+      }
+    } catch (e) {}
+  }
+
+  saveTweaks(next) {
+    try {
+      localStorage.setItem("noway_tweaks_v2", JSON.stringify({
+        off: next.off ?? this.state.off,
+        kickerSize: next.kickerSize ?? this.state.kickerSize,
+        titleSize: next.titleSize ?? this.state.titleSize,
+        phoneScale: next.phoneScale ?? this.state.phoneScale,
+        phoneX: next.phoneX ?? this.state.phoneX,
+        phoneY: next.phoneY ?? this.state.phoneY,
+        gradBlend: next.gradBlend ?? this.state.gradBlend,
+        shotScale: next.shotScale ?? this.state.shotScale,
+        shotRotate: next.shotRotate ?? this.state.shotRotate,
+        shotX: next.shotX ?? this.state.shotX,
+        shotY: next.shotY ?? this.state.shotY,
+        vidScale: next.vidScale ?? this.state.vidScale,
+        vidRotate: next.vidRotate ?? this.state.vidRotate,
+        vidX: next.vidX ?? this.state.vidX,
+        vidY: next.vidY ?? this.state.vidY
+      }));
+    } catch (e) {}
+  }
+
+  setOff(key, val) {
+    this.setState(s => {
+      const off = { ...s.off, [key]: Number(val) };
+      this.saveTweaks({ off });
+      return { off };
+    });
+  }
+
+  I18N = {
+    fr: {
+      navAuto: "Auto-blocage", navParental: "Parental", navFeatures: "Fonctions",
+      navPrivacy: "Vie privée", navPrice: "Prix", navDownload: "Télécharger",
+      heroEyebrow: "Simple et radical",
+      heroTitle: "Absence d'échappatoire",
+      heroLead: "Couper temporairement l'accès à internet. Brider des sites ou des applications. Pour soi-même ou son enfant. Le temps nécessaire pour regagner sa liberté sur des journées qui passent trop vite.",
+      heroManifesto: "Absence d'échappatoire",
+      heroManifestoLead: "Couper temporairement l'accès à internet. Brider des sites ou des applications, avec des parenthèses limitées.\nPour soi-même ou son enfant.\nC'est parfois dans la restriction qu'on regagne notre liberté.",
+      heroHowItWorks: "Voir comment ça marche",
+      heroNote: "Android · achat unique · aucun abonnement",
+      tripleEyebrow: "Parti-pris", tripleTitle: "À triple tour",
+      tripleLead: "Quand c'est bloqué, c'est kéblo. Dans tous les sens du terme.",
+      tripleCards: ["Relancer le téléphone", "Accéder aux paramètres de No-Way", "Désinstaller l'application"],
+      tripleFail: "Échec",
+      barIcoNet: "Connexion", barIcoApp: "Applis", barIcoWeb: "Web",
+      barText1: "Lancez une session de blocage sur internet, des applis ou des sites : impossible de revenir en arrière. Céder à un moment de faiblesse. Raccourcir le temps de blocage.",
+      barText2: "Non, le timer ira jusqu'à son terme coûte que coûte, même si vous tentez les 3 habituels contournements ci-dessous !",
+      engagementKicker: "Engagement",
+      engagementBody: "No-Way restera inviolable pour 99% des utilisateurs. Seuls de véritables experts Android pourront faire sauter le triple verrou du système.",
+      pmEyebrow: "Prise en main",
+      pmTitle: "Base du système",
+      pmLead: "Le blocage de fonctions du mobile s'articule sur 2 grands paramètres : les listes, et le choix d'une temporalité.",
+      pmSub1: "Listes", pmSub2: "Temporalité",
+      pmSub1Tag: "Le périmètre", pmSub2Tag: "Le rythme",
+      pmTempoIntro: "Chaque blocage est calibré sur 3 modalités temporelles possibles.",
+      pmTempo: [
+        { title: "Durée", desc: "Une liste blanche / noire active durant un temps défini." },
+        { title: "Plages horaires", desc: "Possibilité de programmer à l'avance des fourchettes horaires, sur tous les jours de la semaine." },
+        { title: "Limite d'usage", desc: "On calibre un temps d'usage maximal pour les éléments d'une liste avant le blocage. Exemple : 2h d'usage d'Instagram par tranche de 50h." }
+      ],
+      pmSoon: "Bientôt détaillé",
+      pmListIntro: "Deux manières de définir le périmètre. À toi de choisir le sens de la barrière.",
+      pmNoireBadge: "Interdits", pmNoireTitle: "Liste noire",
+      pmNoireDesc: "Établissez une liste de sites et d'applications interdits.\nNavigation possible sur tout le reste.",
+      pmBlancheBadge: "Autorisés", pmBlancheTitle: "Liste blanche",
+      pmBlancheDesc: "Établissez une liste de sites et d'applications autorisés !\nImpossible de naviguer hors de ce périmètre.",
+      gpKicker: "DISPONIBLE SUR",
+      doorCta: "Découvrir",
+      doorAutoKicker: "Dans mon intérêt", doorAutoLabel: "Auto-blocage",
+      doorAutoDesc: "Je me coupe moi-même. Une durée, une raison — impossible d'arrêter avant la fin.",
+      doorParentalKicker: "Dans l'intérêt d'un enfant", doorParentalLabel: "Régulation\nparentale",
+      doorParentalDesc: "Je bloque le téléphone d'un enfant. Protégé par un code que toi seul connais.",
+      lockLabel: "Blocage en cours",
+      lockCaption: "No-Way protège ta concentration.",
+      lockBtn: "Récréation",
+      recreMinutes: "27 minutes disponibles",
+      blockedSummary: "6 applis · 7 sites web",
+      problemEyebrow: "Le problème",
+      problemTitle: "Tous les bloqueurs ont un bouton « stop ». Pas celui-là.",
+      problemBody: "Dans un moment de faiblesse, un seul tap suffit pour tout désactiver. No-Way est construit sur l'inverse : une fois lancé, on ne peut plus revenir en arrière avant la fin. Pas d'annulation, pas d'issue de secours. Radical par conception — c'est le cœur de la promesse.",
+      autoEyebrow: "Pour moi · auto-blocage",
+      autoTitle: "Tu décides à l'avance. Ensuite, tu ne peux plus revenir.",
+      autoSteps: [
+        { n: "01", title: "Choisis quoi bloquer", desc: "Une liste d'applis et/ou de sites." },
+        { n: "02", title: "Choisis comment", desc: "Une durée, un planning, ou une limite par jour." },
+        { n: "03", title: "Lance", desc: "L'écran de blocage prend le relais et tient jusqu'au bout." }
+      ],
+      irreversibleTitle: "Inviolable jusqu'au bout",
+      irreversible: [
+        "Aucun bouton d'annulation",
+        "Le geste « précédent » ne sort pas de l'app",
+        "Avancer l'horloge ne raccourcit rien",
+        "Un redémarrage ne casse pas le blocage"
+      ],
+      recreTitle: "La Récréation",
+      recreBody: "Une réserve de minutes de temps libre, décidée à l'avance. Active-la pour tout lever temporairement, puis mets-la en pause. Une fois épuisée, le blocage reprend — sans retour possible.",
+      recreTag: "La souplesse, sans casser la promesse.",
+      parentalEyebrow: "Pour un enfant · contrôle parental",
+      parentalTitle: "Tu poses un code. Toi seul peux lever le blocage.",
+      parentalSteps: [
+        { n: "01", title: "Pose un code", desc: "PIN à 4–6 chiffres ou schéma à dessiner." },
+        { n: "02", title: "Constitue la liste", desc: "Ce qui est interdit : applis et sites." },
+        { n: "03", title: "Choisis le blocage", desc: "Permanent, limite par jour, ou plages horaires." }
+      ],
+      pinTitle: "Saisis ton code",
+      parentalIntro: "Configurations de blocage identiques au système de base — mais dans son espace, le parent dispose de privilèges.",
+      subscriptionTag: "Service sur abonnement",
+      parentalPerks: [
+        { title: "Espace protégé par un code ou un schéma digital" },
+        { title: "Possibilité d'interrompre le blocage à tout moment" },
+        { title: "Programmer une fois pour toutes les listes et temps de blocage de la semaine. Sans avoir à manipuler le téléphone de l'enfant." },
+        { title: "Visualiser la liste de consultation des sites et applis utilisés par l'enfant durant le blocage", desc: "Avec le temps d'usage de chacun.", sub: "Recevoir directement par mail / SMS la liste de consultation des sites & applis de l'enfant." }
+      ],
+      authorityTitle: "L'autorité reste au parent",
+      authorityBody: "Contrairement à l'auto-blocage, ici le blocage peut être levé — mais uniquement par toi, avec ton code. C'est voulu : tu restes la seule personne aux commandes.",
+      featEyebrow: "Fonctionnalités",
+      featTitle: "Tout pour cadrer le temps d'écran.",
+      featLead: "Trois façons de bloquer, des listes au cordeau, la mesure du temps d'écran et un blocage qui tient sur plusieurs couches.",
+      waysTitle: "Les 3 façons de bloquer",
+      blockWays: [
+        { n: "01", title: "Durée", desc: "Un minuteur. Tout est coupé jusqu'à la fin." },
+        { n: "02", title: "Plage horaire", desc: "Des créneaux récurrents qui s'arment seuls. Multi-créneaux : matin et soir." },
+        { n: "03", title: "Limite par jour", desc: "Un quota de temps d'écran. Épuisé, tout est coupé jusqu'à minuit, puis remis à zéro." }
+      ],
+      listsTitle: "Les listes",
+      lists: [
+        { title: "Liste noire", desc: "bloque seulement ce qui est dedans." },
+        { title: "Liste blanche", desc: "bloque tout sauf ce qui est autorisé. Mode radical." },
+        { title: "Liste d'urgence", desc: "toujours joignable, même pendant un blocage." },
+        { title: "Favoris ★", desc: "épingle une liste + un réglage, relance d'un geste." }
+      ],
+      screenTimeTitle: "Mesure du temps d'écran",
+      screenTimeBody: "Par appli, sur 24 h / 7 j / 30 j. Un classement « Top usage » des applis les plus chronophages. Lecture seule, 100 % local.",
+      favTitle: "Favoris",
+      favBody: "Touche l'étoile pour épingler une combinaison liste + réglage et la relancer d'un seul geste.",
+      layersTitle: "Le blocage, en profondeur",
+      layers: [
+        { title: "Applis", desc: "Refermées dès qu'on les ouvre, et maintenues fermées." },
+        { title: "Sites web", desc: "Filtrés au niveau du réseau, via un tunnel local." },
+        { title: "Notifications", desc: "Étouffées pour les applis bloquées — plus de pings." },
+        { title: "Anti-désinstallation", desc: "Impossible de supprimer No-Way pour contourner." },
+        { title: "Survie au reboot", desc: "Le blocage repart tout seul après un redémarrage." },
+        { title: "Anti-triche horloge", desc: "Avancer l'heure ne raccourcit jamais une session." }
+      ],
+      galleryTitle: "L'app en images",
+      gallerySoon: "Captures à venir — glisse tes visuels ici",
+      scAccueil: "Accueil", scListes: "Mes listes", scPlanifier: "Planifier", scUsage: "Top usage",
+      privacyEyebrow: "Vie privée",
+      privacyTitle: "100 % sur ton téléphone. Rien ne part ailleurs.",
+      privacyLead: "Pas de serveur, pas de compte. C'est un argument de confiance majeur — et la raison d'un simple achat unique, sans abonnement.",
+      privacyPoints: [
+        "Pas d'inscription, pas de mot de passe.",
+        "Aucune donnée personnelle collectée.",
+        "No-Way ne lit pas le contenu de vos écrans.",
+        "Le temps d'écran reste local, en lecture seule."
+      ],
+      honestyEyebrow: "Honnêteté radicale",
+      honestyTitle: "No-Way ne promet pas un coffre-fort.",
+      honestyBig: "Difficile et visible — pas impossible.",
+      honestyBody: "Quelqu'un de très déterminé peut techniquement contourner : le téléphone reste le sien. Notre pari n'est pas l'impossibilité absolue, mais la friction maximale et la visibilité. Contourner demande des efforts conscients et laisse des traces. Pour 99 % des moments de faiblesse, c'est suffisant — et c'est plus honnête que de survendre.",
+      priceEyebrow: "Prix",
+      priceTitle: "Achat unique. Pas d'abonnement.",
+      pricePer: "une fois, pour toujours",
+      priceFeatures: ["30 jours d'essai gratuit sans engagement", "Licence à vie", "Mises à jour incluses", "Aucun compte requis", "Zéro pub"],
+      priceCta: "Télécharger sur Google Play",
+      faq: [
+        { q: "Peut-on l'arrêter en cours de route ?", a: "En auto-blocage, non : aucun bouton d'annulation jusqu'à la fin. En contrôle parental, oui — mais uniquement avec le code du parent." },
+        { q: "Que se passe-t-il si je redémarre le téléphone ?", a: "Le blocage repart tout seul après le reboot. La Récréation, elle, reprend en pause — jamais de levée silencieuse." },
+        { q: "Et mes données ?", a: "Rien ne quitte ton téléphone. Pas de compte, pas de serveur, aucune donnée personnelle collectée." },
+        { q: "Est-ce vraiment impossible à contourner ?", a: "Non, et on ne le prétend pas. Le téléphone reste le tien. On vise la friction maximale et la visibilité, pas un coffre-fort inviolable." },
+        { q: "Sur quels appareils ça marche ?", a: "Android. (iOS n'est pas disponible pour l'instant.)" }
+      ],
+      finalTitle: "Choisis ta voie.",
+      finalBody: "Discipline pour toi, protection pour ton enfant. Une seule app, 100 % sur ton téléphone.",
+      footerLegal: "100 % local · aucun compte · achat unique · Android"
+    },
+    en: {
+      navAuto: "Self-block", navParental: "Parental", navFeatures: "Features",
+      navPrivacy: "Privacy", navPrice: "Price", navDownload: "Download",
+      heroEyebrow: "Simple and radical",
+      heroTitle: "No escape hatch",
+      heroLead: "Temporarily cut off internet access. Restrict sites or apps. For yourself or your child. The time you need to win back your freedom over days that pass too fast.",
+      heroManifesto: "No escape hatch",
+      heroManifestoLead: "Temporarily cut off internet access. Restrict sites or apps. For yourself or your child. The time you need to win back your freedom over days that pass too fast.",
+      heroHowItWorks: "See how it works",
+      heroNote: "Android · one-time purchase · no subscription",
+      tripleEyebrow: "Our stance", tripleTitle: "Under triple lock",
+      tripleLead: "When it's locked, it stays locked — in every sense of the word.",
+      tripleCards: ["Restart the phone", "Reach No-Way's settings", "Uninstall the app"],
+      tripleFail: "Failed",
+      barIcoNet: "Connection", barIcoApp: "Apps", barIcoWeb: "Web",
+      barText1: "Start a blocking session on the internet, apps or sites: there's no going back. Giving in to a weak moment. Cutting the block short.",
+      barText2: "No — the timer runs to the very end no matter what, even if you try the 3 usual workarounds below!",
+      engagementKicker: "Our commitment",
+      engagementBody: "No-Way will stay tamper-proof for 99% of users. Only true Android experts could ever break the system's triple lock.",
+      pmEyebrow: "Getting started",
+      pmTitle: "The system's foundation",
+      pmLead: "Blocking the phone's features rests on two main parameters: the lists, and the choice of a timing.",
+      pmSub1: "Lists", pmSub2: "Timing",
+      pmSub1Tag: "The perimeter", pmSub2Tag: "The rhythm",
+      pmTempoIntro: "Every block is calibrated on 3 possible time modes.",
+      pmTempo: [
+        { title: "Duration", desc: "A whitelist / blacklist active for a set amount of time." },
+        { title: "Time window", desc: "Schedule time slots in advance, across every day of the week." },
+        { title: "Usage limit", desc: "Set a maximum usage time for a list's items before the block kicks in. Example: 2h of Instagram per 50h window." }
+      ],
+      pmSoon: "Detailed soon",
+      pmListIntro: "Two ways to define the perimeter. You choose which way the barrier faces.",
+      pmNoireBadge: "Blocked", pmNoireTitle: "Blacklist",
+      pmNoireDesc: "Build a list of forbidden sites and apps. Everything else stays browsable.",
+      pmBlancheBadge: "Allowed", pmBlancheTitle: "Whitelist",
+      pmBlancheDesc: "Build a list of allowed sites and apps! Impossible to browse outside that perimeter.",
+      gpKicker: "GET IT ON",
+      doorCta: "Explore",
+      doorAutoKicker: "For me", doorAutoLabel: "Self-block",
+      doorAutoDesc: "I cut myself off. A duration, a reason — impossible to stop before the end.",
+      doorParentalKicker: "For a child", doorParentalLabel: "Parental regulation",
+      doorParentalDesc: "I block a child's phone. Protected by a code only you know.",
+      lockLabel: "Blocking active",
+      lockCaption: "No-Way is protecting your focus.",
+      lockBtn: "Recess",
+      recreMinutes: "27 minutes available",
+      blockedSummary: "6 apps · 7 websites",
+      problemEyebrow: "The problem",
+      problemTitle: "Every blocker has a \u201Cstop\u201D button. This one doesn't.",
+      problemBody: "In a moment of weakness, one tap is enough to switch it all off. No-Way is built on the opposite: once started, there's no going back before the end. No cancel, no escape hatch. Radical by design — that's the heart of the promise.",
+      autoEyebrow: "For me · self-block",
+      autoTitle: "You decide upfront. After that, no turning back.",
+      autoSteps: [
+        { n: "01", title: "Choose what to block", desc: "A list of apps and/or websites." },
+        { n: "02", title: "Choose how", desc: "A duration, a schedule, or a daily limit." },
+        { n: "03", title: "Start", desc: "The block screen takes over and holds to the end." }
+      ],
+      irreversibleTitle: "Sealed until the end",
+      irreversible: [
+        "No cancel button",
+        "The \u201Cback\u201D gesture won't leave the app",
+        "Moving the clock forward shortens nothing",
+        "A reboot doesn't break the block"
+      ],
+      recreTitle: "Recess",
+      recreBody: "A reserve of free minutes, decided in advance. Turn it on to lift everything temporarily, then pause it. Once it runs out, the block resumes — with no way back.",
+      recreTag: "Flexibility, without breaking the promise.",
+      parentalEyebrow: "For a child · parental control",
+      parentalTitle: "You set a code. Only you can lift the block.",
+      parentalSteps: [
+        { n: "01", title: "Set a code", desc: "A 4–6 digit PIN or a pattern to draw." },
+        { n: "02", title: "Build the list", desc: "What's off-limits: apps and websites." },
+        { n: "03", title: "Choose the block", desc: "Permanent, daily limit, or time windows." }
+      ],
+      pinTitle: "Enter your code",
+      parentalIntro: "Same blocking setup as the base system — but in their space, the parent gets privileges.",
+      subscriptionTag: "Subscription service",
+      parentalPerks: [
+        { title: "Space protected by a code or a digital pattern" },
+        { title: "Pause the block at any time" },
+        { title: "Schedule the week's block lists and times once and for all", desc: "Without ever touching the child's phone again." },
+        { title: "See the list of sites and apps the child used during the block", desc: "With each one's usage time.", sub: "Get the activity list delivered straight to your email / SMS." }
+      ],
+      authorityTitle: "The parent stays in charge",
+      authorityBody: "Unlike self-block, here the block can be lifted — but only by you, with your code. That's intentional: you remain the only one at the controls.",
+      featEyebrow: "Features",
+      featTitle: "Everything to frame screen time.",
+      featLead: "Three ways to block, razor-sharp lists, screen-time tracking, and a block that holds across multiple layers.",
+      waysTitle: "The 3 ways to block",
+      blockWays: [
+        { n: "01", title: "Duration", desc: "A timer. Everything is cut until it ends." },
+        { n: "02", title: "Time window", desc: "Recurring slots that arm themselves. Multi-slot: morning and evening." },
+        { n: "03", title: "Daily limit", desc: "A screen-time quota. Spent, it's all cut until midnight, then reset." }
+      ],
+      listsTitle: "The lists",
+      lists: [
+        { title: "Blacklist", desc: "blocks only what's on it." },
+        { title: "Whitelist", desc: "blocks everything except what's allowed. Radical mode." },
+        { title: "Emergency list", desc: "always reachable, even during a block." },
+        { title: "Favorites ★", desc: "pin a list + setting, relaunch in one tap." }
+      ],
+      screenTimeTitle: "Screen-time tracking",
+      screenTimeBody: "Per app, over 24 h / 7 d / 30 d. A \u201CTop usage\u201D ranking of your biggest time sinks. Read-only, 100 % local.",
+      favTitle: "Favorites",
+      favBody: "Tap the star to pin a list + setting combo and relaunch it in a single tap.",
+      layersTitle: "The block, in depth",
+      layers: [
+        { title: "Apps", desc: "Closed the moment you open them, kept closed." },
+        { title: "Websites", desc: "Filtered at the network level, via a local tunnel." },
+        { title: "Notifications", desc: "Muted for blocked apps — no more tempting pings." },
+        { title: "Anti-uninstall", desc: "You can't remove No-Way to get around it." },
+        { title: "Reboot survival", desc: "The block restarts on its own after a reboot." },
+        { title: "Clock anti-cheat", desc: "Moving the clock never shortens a session." }
+      ],
+      galleryTitle: "The app in pictures",
+      gallerySoon: "Screenshots coming — drop your visuals here",
+      scAccueil: "Home", scListes: "My lists", scPlanifier: "Schedule", scUsage: "Top usage",
+      privacyEyebrow: "Privacy",
+      privacyTitle: "100 % on your phone. Nothing goes anywhere.",
+      privacyLead: "No server, no account. It's a major trust argument — and the reason for a simple one-time purchase, no subscription.",
+      privacyPoints: [
+        "No sign-up, no password, no server.",
+        "No personal data collected.",
+        "No-Way doesn't read your screen content.",
+        "Screen time stays local, read-only."
+      ],
+      honestyEyebrow: "Radical honesty",
+      honestyTitle: "No-Way doesn't promise a vault.",
+      honestyBig: "Hard and visible — not impossible.",
+      honestyBody: "Someone very determined can technically get around it: the phone is still theirs. Our bet isn't absolute impossibility, but maximum friction plus visibility. Getting around it takes conscious effort and leaves traces. For 99 % of weak moments, that's enough — and it's more honest than overselling.",
+      priceEyebrow: "Price",
+      priceTitle: "One-time purchase. No subscription.",
+      pricePer: "once, forever",
+      priceFeatures: ["All features", "Both modes included", "Updates included", "No account required"],
+      priceCta: "Get it on Google Play",
+      faq: [
+        { q: "Can you stop it midway?", a: "In self-block, no: there's no cancel button until the end. In parental control, yes — but only with the parent's code." },
+        { q: "What happens if I restart the phone?", a: "The block restarts on its own after the reboot. Recess resumes paused — never a silent lift." },
+        { q: "What about my data?", a: "Nothing leaves your phone. No account, no server, no personal data collected." },
+        { q: "Is it truly impossible to bypass?", a: "No, and we don't claim it is. The phone is still yours. We aim for maximum friction and visibility, not an unbreakable vault." },
+        { q: "Which devices does it work on?", a: "Android. (iOS isn't available for now.)" }
+      ],
+      finalTitle: "Choose your path.",
+      finalBody: "Discipline for you, protection for your child. One app, 100 % on your phone.",
+      footerLegal: "100 % local · no account · one-time purchase · Android"
+    }
+  };
+
+  renderVals() {
+    const lang = this.state.lang;
+    const t = this.I18N[lang];
+    const open = this.state.openFaq;
+    const tOpen = this.state.openTempo;
+    const tempoIcons = [
+      React.createElement("svg", { width: 23, height: 23, viewBox: "0 0 15 15", fill: "currentColor" }, React.createElement("path", { fillRule: "evenodd", clipRule: "evenodd", d: "M9 0a.5.5 0 0 1 0 1H8v1.121a6.36 6.36 0 0 1 2.992 1.017a1 1 0 0 1 .066-.08l1-1l.099-.08a.626.626 0 0 1 .866.866l-.08.098l-.977.976A6.4 6.4 0 1 1 7 2.121V1H6a.5.5 0 1 1 0-1zM7.5 3.1a5.401 5.401 0 1 0 .002 10.802A5.401 5.401 0 0 0 7.5 3.1m0 5.4l3.112 3.111A4.4 4.4 0 1 1 7.5 4.1z" })),
+      React.createElement("svg", { width: 22, height: 22, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 1.8, strokeLinecap: "round", strokeLinejoin: "round" }, React.createElement("circle", { cx: 12, cy: 12, r: 8.5 }), React.createElement("path", { d: "M12 7v5l3 2" })),
+      React.createElement("svg", { width: 22, height: 22, viewBox: "0 0 24 24", fill: "currentColor" }, React.createElement("path", { d: "M8 20h8v-3q0-1.65-1.175-2.825T12 13t-2.825 1.175T8 17zm6.825-10.175Q16 8.65 16 7V4H8v3q0 1.65 1.175 2.825T12 11t2.825-1.175M4 22v-2h2v-3q0-1.525.713-2.863T8.7 12q-1.275-.8-1.987-2.137T6 7V4H4V2h16v2h-2v3q0 1.525-.712 2.863T15.3 12q1.275.8 1.988 2.138T18 17v3h2v2zm8-18" }))
+    ];
+    const tempoItems = (t.pmTempo || []).map((it, i) => ({
+      title: it.title, desc: it.desc, icon: tempoIcons[i],
+      open: tOpen === i, closed: tOpen !== i,
+      chevTransform: tOpen === i ? "rotate(180deg)" : "rotate(0deg)",
+      onClick: () => this.setState({ openTempo: tOpen === i ? -1 : i })
+    }));
+    const faqItems = t.faq.map((it, i) => ({
+      q: it.q, a: it.a,
+      open: open === i, closed: open !== i,
+      onClick: () => this.setState({ openFaq: open === i ? -1 : i })
+    }));
+    const recStep = this.state.recStep;
+    const recParas = [
+      "La detoxification à long-terme, ça marche mieux par paliers.",
+      "Ainsi, vous disposez d'un bouton « Récréation » pendant la session de blocage.",
+      "La Récréation est une « cagnotte » de temps, définie à l'avance, qui interrompt provisoirement le blocage.",
+      "Votre enfant, ou vous-même, l'utilisez quand vous vous voulez, avec parcimonie.",
+      "Quand la cagnotte tombe à zéro, le blocage ne sera plus interrompu jusqu'à son terme."
+    ];
+    const paraIdx = ((recStep % 5) + 5) % 5;
+    const recMins = [27, 21, 14, 7, 0][paraIdx];
+    const FACE_H = 160;
+    // 4 faces physiques d'un cube tournant sur l'axe X (bas → haut)
+    const faces = [0, 1, 2, 3].map((f) => {
+      const s = recStep - (((recStep - f) % 4) + 4) % 4; // dernier pas utilisant cette face
+      return {
+        tf: "rotateX(" + (f * 90) + "deg) translateZ(" + (FACE_H / 2) + "px)",
+        txt: recParas[((s % 5) + 5) % 5]
+      };
+    });
+    const recImgs = ["recreation.png", "rec-screenblock.png", "rec-oldfriend.jpeg"];
+    const flipStage = Math.floor(recStep / 5) * 3 + [0, 0, 1, 1, 2][paraIdx];
+    const photoFaces = [0, 1].map((f) => {
+      const st = flipStage - (((flipStage - f) % 2) + 2) % 2;
+      const src = recImgs[((st % 3) + 3) % 3];
+      return { src, tf: "rotateY(" + (f * 180) + "deg)", pad: src === "rec-screenblock.png" ? "15px" : "0px" };
+    });
+    const rec = {
+      minutes: recMins,
+      barPct: (recMins / 27 * 100) + "%",
+      faces,
+      cubeTransform: "rotateX(" + (recStep * -90) + "deg)",
+      photoFaces,
+      photoTransform: "rotateY(" + (flipStage * 180) + "deg)",
+      btnWrap: paraIdx < 4 ? "display:block;" : "display:none;",
+      doneWrap: paraIdx >= 4 ? "display:flex;" : "display:none;",
+      spend: () => this.setState(s => ({ recStep: s.recStep + 1 })),
+      reset: () => this.setState(s => ({ recStep: s.recStep + 1 }))
+    };
+    return {
+      t, lang,
+      rec,
+      otherLang: lang === "fr" ? "EN" : "FR",
+      toggleLang: () => this.setState({ lang: lang === "fr" ? "en" : "fr" }),
+      tri: {
+        eyebrow: t.tripleEyebrow, title: t.tripleTitle, lead: t.tripleLead, fail: t.tripleFail,
+        c1: t.tripleCards[0], c2: t.tripleCards[1], c3: t.tripleCards[2],
+        icoNet: t.barIcoNet, icoApp: t.barIcoApp, icoWeb: t.barIcoWeb,
+        bar1: t.barText1, bar2: t.barText2,
+        engKicker: t.engagementKicker, engBody: t.engagementBody
+      },
+      faqItems,
+      tempoItems,
+      price: this.props.priceAmount || "25 €",
+      recreBg: this.props.recreBg ?? "transparent",
+      recreColor: this.props.recreColor ?? "#0B0C0E",
+      off: this.state.off,
+      kickerSizePx: this.state.kickerSize + "px",
+      titleSizePx: this.state.titleSize + "px",
+      phoneTransform: `translate(${this.state.phoneX}px, ${this.state.phoneY}px) rotate(2.5deg) scale(${this.state.phoneScale / 100})`,
+      phoneX: this.state.phoneX,
+      phoneY: this.state.phoneY,
+      setPhoneX: (e) => { const phoneX = Number(e.target.value); this.saveTweaks({ phoneX }); this.setState({ phoneX }); },
+      setPhoneY: (e) => { const phoneY = Number(e.target.value); this.saveTweaks({ phoneY }); this.setState({ phoneY }); },
+      shotScale: this.state.shotScale,
+      shotRotate: this.state.shotRotate,
+      shotX: this.state.shotX,
+      shotY: this.state.shotY,
+      shotTransform: `translate(${this.state.shotX}px, ${this.state.shotY}px) rotate(${this.state.shotRotate}deg) scale(${this.state.shotScale / 100})`,
+      setShotX: (e) => { const shotX = Number(e.target.value); this.saveTweaks({ shotX }); this.setState({ shotX }); },
+      setShotY: (e) => { const shotY = Number(e.target.value); this.saveTweaks({ shotY }); this.setState({ shotY }); },
+      vidScale: this.state.vidScale,
+      vidRotate: this.state.vidRotate,
+      vidX: this.state.vidX,
+      vidY: this.state.vidY,
+      vidTransform: `translate(${this.state.vidX}px, ${this.state.vidY}px) rotate(${this.state.vidRotate}deg) scale(${this.state.vidScale / 100})`,
+      setVidScale: (e) => { const vidScale = Number(e.target.value); this.saveTweaks({ vidScale }); this.setState({ vidScale }); },
+      setVidRotate: (e) => { const vidRotate = Number(e.target.value); this.saveTweaks({ vidRotate }); this.setState({ vidRotate }); },
+      setVidX: (e) => { const vidX = Number(e.target.value); this.saveTweaks({ vidX }); this.setState({ vidX }); },
+      setVidY: (e) => { const vidY = Number(e.target.value); this.saveTweaks({ vidY }); this.setState({ vidY }); },
+      setShotScale: (e) => { const shotScale = Number(e.target.value); this.saveTweaks({ shotScale }); this.setState({ shotScale }); },
+      setShotRotate: (e) => { const shotRotate = Number(e.target.value); this.saveTweaks({ shotRotate }); this.setState({ shotRotate }); },
+      gradBlend: this.state.gradBlend,
+      phoneGradient: `linear-gradient(295deg, #DF7000 0%, #DF7000 ${50 - this.state.gradBlend / 2}%, #76B900 ${50 + this.state.gradBlend / 2}%, #76B900 100%)`,
+      setGradBlend: (e) => { const gradBlend = Number(e.target.value); this.saveTweaks({ gradBlend }); this.setState({ gradBlend }); },
+      setPhoneScale: (e) => { const phoneScale = Number(e.target.value); this.saveTweaks({ phoneScale }); this.setState({ phoneScale }); },
+      setKickerSize: (e) => { const kickerSize = Number(e.target.value); this.saveTweaks({ kickerSize }); this.setState({ kickerSize }); },
+      setTitleSize: (e) => { const titleSize = Number(e.target.value); this.saveTweaks({ titleSize }); this.setState({ titleSize }); },
+      autoTransform: `translate(${this.state.off.autoX}px, ${this.state.off.autoY}px)`,
+      parentalTransform: `translate(${this.state.off.parentalX}px, ${this.state.off.parentalY}px)`,
+      gpTransform: `translate(${this.state.off.gpX}px, ${this.state.off.gpY}px)`,
+      recImgTransform: `translate(${this.state.off.recImgX}px, ${this.state.off.recImgY}px)`,
+      recMeterTransform: `translate(${this.state.off.recMeterX}px, ${this.state.off.recMeterY}px)`,
+      recTitleTransform: `translate(${this.state.off.recTitleX}px, ${this.state.off.recTitleY}px)`,
+      recBtnTransform: `translate(${this.state.off.recBtnX}px, ${this.state.off.recBtnY}px)`,
+      setRecImgX: (e) => this.setOff("recImgX", e.target.value),
+      setRecImgY: (e) => this.setOff("recImgY", e.target.value),
+      setRecMeterX: (e) => this.setOff("recMeterX", e.target.value),
+      setRecMeterY: (e) => this.setOff("recMeterY", e.target.value),
+      setRecTitleX: (e) => this.setOff("recTitleX", e.target.value),
+      setRecTitleY: (e) => this.setOff("recTitleY", e.target.value),
+      setRecBtnX: (e) => this.setOff("recBtnX", e.target.value),
+      setRecBtnY: (e) => this.setOff("recBtnY", e.target.value),
+      autoKickerTransform: `translate(${this.state.off.autoKickerX}px, ${this.state.off.autoKickerY}px)`,
+      autoTitleTransform: `translate(${this.state.off.autoTitleX}px, ${this.state.off.autoTitleY}px)`,
+      parentalKickerTransform: `translate(${this.state.off.parentalKickerX}px, ${this.state.off.parentalKickerY}px)`,
+      parentalTitleTransform: `translate(${this.state.off.parentalTitleX}px, ${this.state.off.parentalTitleY}px)`,
+      setAutoKickerX: (e) => this.setOff("autoKickerX", e.target.value),
+      setAutoKickerY: (e) => this.setOff("autoKickerY", e.target.value),
+      setAutoTitleX: (e) => this.setOff("autoTitleX", e.target.value),
+      setAutoTitleY: (e) => this.setOff("autoTitleY", e.target.value),
+      setParentalKickerX: (e) => this.setOff("parentalKickerX", e.target.value),
+      setParentalKickerY: (e) => this.setOff("parentalKickerY", e.target.value),
+      setParentalTitleX: (e) => this.setOff("parentalTitleX", e.target.value),
+      setParentalTitleY: (e) => this.setOff("parentalTitleY", e.target.value),
+      setAutoX: (e) => this.setOff("autoX", e.target.value),
+      setAutoY: (e) => this.setOff("autoY", e.target.value),
+      setParentalX: (e) => this.setOff("parentalX", e.target.value),
+      setParentalY: (e) => this.setOff("parentalY", e.target.value),
+      setGpX: (e) => this.setOff("gpX", e.target.value),
+      setGpY: (e) => this.setOff("gpY", e.target.value),
+      resetOff: () => { const off = { autoX: 0, autoY: -175, parentalX: -203, parentalY: -175, gpX: -1, gpY: 215, autoKickerX: 7, autoKickerY: -1, autoTitleX: 104, autoTitleY: -117, parentalKickerX: 0, parentalKickerY: 0, parentalTitleX: 118, parentalTitleY: -136 }; this.saveTweaks({ off, kickerSize: 15, titleSize: 28, phoneScale: 120, gradBlend: 5, shotScale: 149, shotRotate: -4, shotX: -55, shotY: 0, vidScale: 123, vidRotate: -5, vidX: -3, vidY: 107 }); this.setState({ off, kickerSize: 15, titleSize: 28, phoneScale: 120, gradBlend: 5, shotScale: 149, shotRotate: -4, shotX: -55, shotY: 0, vidScale: 123, vidRotate: -5, vidX: -3, vidY: 107 }); }
+    };
+  }
+}
+</script>
 </body>
 </html>
