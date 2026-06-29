@@ -55,60 +55,6 @@
 
   <div id="top"></div>
 
-  <!-- ============ PANNEAU DE RÉGLAGE (sliders) ============ -->
-  <div style="position:fixed;right:18px;bottom:18px;z-index:200;background:#161616;border:1px solid rgba(255,255,255,0.1);border-radius:16px;padding:18px;width:248px;max-height:78vh;overflow-y:auto;box-shadow:0 18px 44px rgba(0,0,0,0.55);font-family:'Hanken Grotesk',sans-serif;">
-    <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;">
-      <span style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:12px;letter-spacing:1.2px;text-transform:uppercase;color:#9A9A95;">Déplacer</span>
-      <button onClick="{{ resetOff }}" style="cursor:pointer;background:#232325;color:#F5F5F2;border:none;border-radius:8px;padding:5px 10px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:11px;">Reset</button>
-    </div>
-
-    <div style="font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#9A9A95;margin-bottom:8px;">Taille du texte</div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:42px;font-size:10px;font-weight:700;color:#6E6E68;">Kicker</span><input type="range" min="9" max="22" value="{{ kickerSize }}" onChange="{{ setKickerSize }}" style="flex:1;accent-color:#F5F5F2;"></div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:18px;"><span style="width:42px;font-size:10px;font-weight:700;color:#6E6E68;">Titre</span><input type="range" min="18" max="60" value="{{ titleSize }}" onChange="{{ setTitleSize }}" style="flex:1;accent-color:#F5F5F2;"></div>
-
-    <div style="font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#9A9A95;margin-bottom:8px;">Téléphone</div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:42px;font-size:10px;font-weight:700;color:#6E6E68;">Échelle</span><input type="range" min="50" max="160" value="{{ phoneScale }}" onChange="{{ setPhoneScale }}" style="flex:1;accent-color:#F5F5F2;"></div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:42px;font-size:10px;font-weight:700;color:#6E6E68;">Dégradé</span><input type="range" min="0" max="100" step="1" value="{{ gradBlend }}" onChange="{{ setGradBlend }}" style="flex:1;accent-color:#DF7000;"></div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:42px;font-size:10px;font-weight:700;color:#6E6E68;">↔ Horiz.</span><input type="range" min="-200" max="200" step="1" value="{{ phoneX }}" onChange="{{ setPhoneX }}" style="flex:1;accent-color:#F5F5F2;"></div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:18px;"><span style="width:42px;font-size:10px;font-weight:700;color:#6E6E68;">↕ Vert.</span><input type="range" min="-200" max="200" step="1" value="{{ phoneY }}" onChange="{{ setPhoneY }}" style="flex:1;accent-color:#F5F5F2;"></div>
-
-    <div style="font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#84CC16;margin-bottom:8px;">Auto-blocage — carte</div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px;"><span style="width:42px;font-size:10px;font-weight:700;color:#6E6E68;">↔ Pos.</span><input type="range" min="-800" max="800" step="1" value="{{ off.autoX }}" onChange="{{ setAutoX }}" style="flex:1;accent-color:#84CC16;"></div>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6E6E68;margin-bottom:6px;">↳ Kicker</div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↔</span><input type="range" min="-200" max="200" value="{{ off.autoKickerX }}" onChange="{{ setAutoKickerX }}" style="flex:1;accent-color:#84CC16;"></div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↕</span><input type="range" min="-120" max="120" value="{{ off.autoKickerY }}" onChange="{{ setAutoKickerY }}" style="flex:1;accent-color:#84CC16;"></div>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6E6E68;margin-bottom:6px;">↳ Titre</div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↔</span><input type="range" min="-200" max="200" value="{{ off.autoTitleX }}" onChange="{{ setAutoTitleX }}" style="flex:1;accent-color:#84CC16;"></div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:18px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↕</span><input type="range" min="-350" max="350" value="{{ off.autoTitleY }}" onChange="{{ setAutoTitleY }}" style="flex:1;accent-color:#84CC16;"></div>
-
-    <div style="font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#DF7000;margin-bottom:8px;">Régulation parentale — carte</div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px;"><span style="width:42px;font-size:10px;font-weight:700;color:#6E6E68;">↔ Pos.</span><input type="range" min="-800" max="800" step="1" value="{{ off.parentalX }}" onChange="{{ setParentalX }}" style="flex:1;accent-color:#DF7000;"></div>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6E6E68;margin-bottom:6px;">↳ Kicker</div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↔</span><input type="range" min="-200" max="200" value="{{ off.parentalKickerX }}" onChange="{{ setParentalKickerX }}" style="flex:1;accent-color:#DF7000;"></div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↕</span><input type="range" min="-120" max="120" value="{{ off.parentalKickerY }}" onChange="{{ setParentalKickerY }}" style="flex:1;accent-color:#DF7000;"></div>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6E6E68;margin-bottom:6px;">↳ Titre</div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↔</span><input type="range" min="-200" max="200" value="{{ off.parentalTitleX }}" onChange="{{ setParentalTitleX }}" style="flex:1;accent-color:#DF7000;"></div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:18px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↕</span><input type="range" min="-350" max="350" value="{{ off.parentalTitleY }}" onChange="{{ setParentalTitleY }}" style="flex:1;accent-color:#DF7000;"></div>
-
-    <div style="font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#76B900;margin-bottom:8px;">Google Play</div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↔</span><input type="range" min="-300" max="300" value="{{ off.gpX }}" onChange="{{ setGpX }}" style="flex:1;accent-color:#76B900;"></div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:18px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↕</span><input type="range" min="-500" max="500" value="{{ off.gpY }}" onChange="{{ setGpY }}" style="flex:1;accent-color:#76B900;"></div>
-
-    <div style="font-size:11px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:#DF7000;margin-bottom:8px;">Récréation</div>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6E6E68;margin-bottom:6px;">↳ Image</div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↔</span><input type="range" min="-400" max="400" value="{{ off.recImgX }}" onChange="{{ setRecImgX }}" style="flex:1;accent-color:#DF7000;"></div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↕</span><input type="range" min="-300" max="300" value="{{ off.recImgY }}" onChange="{{ setRecImgY }}" style="flex:1;accent-color:#DF7000;"></div>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6E6E68;margin-bottom:6px;">↳ 27 min + barre</div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↔</span><input type="range" min="-400" max="400" value="{{ off.recMeterX }}" onChange="{{ setRecMeterX }}" style="flex:1;accent-color:#DF7000;"></div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↕</span><input type="range" min="-300" max="300" value="{{ off.recMeterY }}" onChange="{{ setRecMeterY }}" style="flex:1;accent-color:#DF7000;"></div>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6E6E68;margin-bottom:6px;">↳ Titre RÉCRÉATION</div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↔</span><input type="range" min="-900" max="900" value="{{ off.recTitleX }}" onChange="{{ setRecTitleX }}" style="flex:1;accent-color:#DF7000;"></div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:12px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↕</span><input type="range" min="-300" max="300" value="{{ off.recTitleY }}" onChange="{{ setRecTitleY }}" style="flex:1;accent-color:#DF7000;"></div>
-    <div style="font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#6E6E68;margin-bottom:6px;">↳ Bouton</div>
-    <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↔</span><input type="range" min="-900" max="900" value="{{ off.recBtnX }}" onChange="{{ setRecBtnX }}" style="flex:1;accent-color:#DF7000;"></div>
-    <div style="display:flex;align-items:center;gap:9px;"><span style="width:14px;font-size:12px;font-weight:700;color:#6E6E68;">↕</span><input type="range" min="-300" max="300" value="{{ off.recBtnY }}" onChange="{{ setRecBtnY }}" style="flex:1;accent-color:#DF7000;"></div>
-  </div>
-
   <!-- ============ HERO ============ -->
   <header style="max-width:1280px;margin:0 auto;padding:84px 24px 72px;display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;">
     <div>
