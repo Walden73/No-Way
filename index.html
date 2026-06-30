@@ -56,21 +56,43 @@
   <div id="top"></div>
 
   <!-- ============ HERO ============ -->
-  <header style="max-width:1280px;margin:0 auto;padding:84px 24px 72px;display:grid;grid-template-columns:1.1fr 0.9fr;gap:56px;align-items:center;">
-    <div>
-      <div style="display: inline-flex; align-items: center; gap: 9px; font-size: 12px; font-weight: 700; letter-spacing: 1.6px; text-transform: uppercase; color: #6E6E68; margin-bottom: 24px; margin-left: 40px">
+  <header style="max-width:1280px;margin:0 auto;padding:84px 24px 72px;display:grid;grid-template-columns:minmax(0,1fr) 360px;gap:56px;align-items:center;">
+    <!-- colonne gauche : eyebrow → titre → texte → 2 portes → Google Play -->
+    <div style="display:flex;flex-direction:column;align-items:flex-start;gap:30px;padding-left:40px;">
+      <div style="display:inline-flex;align-items:center;gap:9px;font-size:12px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:#6E6E68;">
         <span style="width:7px;height:7px;border-radius:50%;background:#76B900;"></span>SIMPLE, LOCAL ET RADICAL</div>
-      <h1 style="font-family: 'Space Grotesk',sans-serif; font-weight: 700; font-size: clamp(52px,7vw,104px); line-height: 0.9; letter-spacing: -0.045em; margin: 0 0 26px; margin-left: 40px">DETOX<br>D'ÉCRAN</h1>
-      <p style="max-width: 703px; margin: 0 0 38px; font-size: 18px; line-height: 1.55; color: #9A9A95; white-space: pre-line; width: 666px; margin-left: 40px">Brider provisoirement sa connexion, où l'accès à certaines applications ou sites web. Se permettre des petits écarts au compte-goutte.
+      <h1 style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:clamp(52px,7vw,104px);line-height:0.9;letter-spacing:-0.045em;margin:0;">DETOX<br>D'ÉCRAN</h1>
+      <p style="max-width:666px;margin:0;font-size:18px;line-height:1.55;color:#9A9A95;white-space:pre-line;">Brider provisoirement sa connexion, où l'accès à certaines applications ou sites web. Se permettre des petits écarts au compte-goutte.
 Pour soi-même ou son enfant.
 C'est parfois dans la restriction qu'on regagne notre liberté.</p>
-      <div style="display:flex;align-items:center;gap:18px;flex-wrap:wrap;">
-        <a href="#download" style="display: inline-flex; align-items: center; gap: 12px; background: transparent; color: #76B900; border: 1.5px solid #76B900; padding: 15px 26px; border-radius: 14px; transition: transform .2s ease; transform: {{ gpTransform }}; margin-left: 38px">
-          <svg width="22" height="24" viewBox="0 0 22 24" fill="#76B900"><path d="M1 1.5v21l11-10.5L1 1.5z" opacity="0.92"></path></svg>
-          <span style="text-align:left;line-height:1.1;"><span style="display:block;font-size:11px;font-weight:600;opacity:.75;">{{ t.gpKicker }}</span><span style="display:block;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;">Google Play</span></span>
-        </a>
+      <!-- les deux portes -->
+      <div style="width:100%;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px;margin-top:6px;">
+        <div style="position: relative; background: radial-gradient(100% 130% at 8% 42%, rgba(118,185,0,0.26) 0%, rgba(118,185,0,0.08) 38%, rgba(22,22,22,0) 72%), #161616; border-radius: 18px; padding: 28px 30px; overflow: hidden; display: flex; flex-direction: column; justify-content: center; gap: 24px; min-height: 187px">
+          <span style="position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:0 4px 4px 0;background:linear-gradient(180deg, rgba(132,204,22,0) 0%, #84CC16 28%, #84CC16 72%, rgba(132,204,22,0) 100%);"></span>
+          <div style="display: flex; align-items: center; gap: 22px;">
+            <div style="flex:none; width: 85px; height: 85px; border-radius: 14px; background: rgba(118,185,0,0.16); display: flex; align-items: center; justify-content: center;">
+              <svg viewBox="0 0 24 24" style="width: 52px; height: 52px; color:#BFF230"><path d="M0 0h24v24H0z" fill="none"></path><path fill="currentColor" d="M12 2a5 5 0 0 1 5 5v3a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3v-6a3 3 0 0 1 3-3V7a5 5 0 0 1 5-5m0 12a2 2 0 0 0-1.995 1.85L10 16a2 2 0 1 0 2-2m0-10a3 3 0 0 0-3 3v3h6V7a3 3 0 0 0-3-3"></path></svg></div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size: {{ titleSizePx }};letter-spacing:-0.6px;">{{ t.doorAutoLabel }}</div>
+          </div>
+          <div style="font-size: {{ kickerSizePx }};font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:#84CC16;">{{ t.doorAutoKicker }}</div>
+        </div>
+        <div style="position: relative; background: radial-gradient(100% 130% at 8% 42%, rgba(223,112,0,0.30) 0%, rgba(223,112,0,0.10) 38%, rgba(22,22,22,0) 72%), #161616; border-radius: 18px; padding: 28px 30px; overflow: hidden; display: flex; flex-direction: column; justify-content: center; gap: 24px; min-height: 187px">
+          <span style="position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:0 4px 4px 0;background:linear-gradient(180deg, rgba(223,112,0,0) 0%, #DF7000 28%, #DF7000 72%, rgba(223,112,0,0) 100%);"></span>
+          <div style="display: flex; align-items: center; gap: 22px;">
+            <div style="flex:none; width: 85px; height: 85px; border-radius: 14px; background: rgba(223, 112, 0, 0.16); display: flex; align-items: center; justify-content: center;">
+              <svg viewBox="0 0 24 24" style="width: 50px; height: 50px; color:#FFAA00"><path d="M0 0h24v24H0z" fill="none"></path><path fill="currentColor" d="M7.5 2a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2M6 7h3a2 2 0 0 1 2 2v5.5H9.5V22h-4v-7.5H4V9a2 2 0 0 1 2-2m8.5 5a2 2 0 0 1 2-2a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2m-1 3h6v4H18v3h-3v-3h-1.5z"></path></svg></div>
+            <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size: {{ titleSizePx }};letter-spacing:-0.6px;white-space:pre-line;">{{ t.doorParentalLabel }}</div>
+          </div>
+          <div style="font-size: {{ kickerSizePx }};font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:#DF7000;">{{ t.doorParentalKicker }}</div>
+        </div>
       </div>
+      <!-- bouton Google Play -->
+      <a href="#download" style="display:inline-flex;align-items:center;gap:12px;background:transparent;color:#76B900;border:1.5px solid #76B900;padding:15px 26px;border-radius:14px;transition:transform .2s ease;margin-top:6px;">
+        <svg width="22" height="24" viewBox="0 0 22 24" fill="#76B900"><path d="M1 1.5v21l11-10.5L1 1.5z" opacity="0.92"></path></svg>
+        <span style="text-align:left;line-height:1.1;"><span style="display:block;font-size:11px;font-weight:600;opacity:.75;">{{ t.gpKicker }}</span><span style="display:block;font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:18px;">Google Play</span></span>
+      </a>
     </div>
+    <!-- colonne droite : faux téléphone -->
     <div style="display:flex;justify-content:center;">
       <!-- green lock screen mock -->
       <div style="width:286px;background:#18181A;border-radius:42px;padding:11px;box-shadow:0 30px 80px rgba(0,0,0,0.5);transition:transform .2s ease;transform: {{ phoneTransform }};">
@@ -97,26 +119,6 @@ C'est parfois dans la restriction qu'on regagne notre liberté.</p>
       </div>
     </div>
   </header>
-  <div style="max-width: 1280px; margin: -20px auto 0; padding: 0 64px 56px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 18px; width: 100%">
-    <div style="position: relative; background: radial-gradient(100% 130% at 8% 42%, rgba(118,185,0,0.26) 0%, rgba(118,185,0,0.08) 38%, rgba(22,22,22,0) 72%), #161616; border-radius: 18px; padding: 28px 30px; overflow: hidden; display: flex; flex-direction: column; justify-content: center; gap: 24px; min-height: 187px">
-      <span style="position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:0 4px 4px 0;background:linear-gradient(180deg, rgba(132,204,22,0) 0%, #84CC16 28%, #84CC16 72%, rgba(132,204,22,0) 100%);"></span>
-      <div style="display: flex; align-items: center; gap: 22px;">
-        <div style="flex:none; width: 85px; height: 85px; border-radius: 14px; background: rgba(118,185,0,0.16); display: flex; align-items: center; justify-content: center;">
-          <svg viewBox="0 0 24 24" style="width: 52px; height: 52px; color:#BFF230"><path d="M0 0h24v24H0z" fill="none"></path><path fill="currentColor" d="M12 2a5 5 0 0 1 5 5v3a3 3 0 0 1 3 3v6a3 3 0 0 1-3 3H7a3 3 0 0 1-3-3v-6a3 3 0 0 1 3-3V7a5 5 0 0 1 5-5m0 12a2 2 0 0 0-1.995 1.85L10 16a2 2 0 1 0 2-2m0-10a3 3 0 0 0-3 3v3h6V7a3 3 0 0 0-3-3"></path></svg></div>
-        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size: {{ titleSizePx }};letter-spacing:-0.6px;">{{ t.doorAutoLabel }}</div>
-      </div>
-      <div style="font-size: {{ kickerSizePx }};font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:#84CC16;">{{ t.doorAutoKicker }}</div>
-    </div>
-    <div style="position: relative; background: radial-gradient(100% 130% at 8% 42%, rgba(223,112,0,0.30) 0%, rgba(223,112,0,0.10) 38%, rgba(22,22,22,0) 72%), #161616; border-radius: 18px; padding: 28px 30px; overflow: hidden; display: flex; flex-direction: column; justify-content: center; gap: 24px; min-height: 187px">
-      <span style="position:absolute;left:0;top:0;bottom:0;width:4px;border-radius:0 4px 4px 0;background:linear-gradient(180deg, rgba(223,112,0,0) 0%, #DF7000 28%, #DF7000 72%, rgba(223,112,0,0) 100%);"></span>
-      <div style="display: flex; align-items: center; gap: 22px;">
-        <div style="flex:none; width: 85px; height: 85px; border-radius: 14px; background: rgba(223, 112, 0, 0.16); display: flex; align-items: center; justify-content: center;">
-          <svg viewBox="0 0 24 24" style="width: 50px; height: 50px; color:#FFAA00"><path d="M0 0h24v24H0z" fill="none"></path><path fill="currentColor" d="M7.5 2a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2a2 2 0 0 1 2-2M6 7h3a2 2 0 0 1 2 2v5.5H9.5V22h-4v-7.5H4V9a2 2 0 0 1 2-2m8.5 5a2 2 0 0 1 2-2a2 2 0 0 1 2 2a2 2 0 0 1-2 2a2 2 0 0 1-2-2m-1 3h6v4H18v3h-3v-3h-1.5z"></path></svg></div>
-        <div style="font-family:'Space Grotesk',sans-serif;font-weight:700;font-size: {{ titleSizePx }};letter-spacing:-0.6px;white-space:pre-line;">{{ t.doorParentalLabel }}</div>
-      </div>
-      <div style="font-size: {{ kickerSizePx }};font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:#DF7000;">{{ t.doorParentalKicker }}</div>
-    </div>
-  </div>
 
   <!-- ============ PARTI-PRIS — À TRIPLE TOUR (ROUGE) ============ -->
   <section id="triple" style="border-top:1px solid rgba(255,255,255,0.07);">
